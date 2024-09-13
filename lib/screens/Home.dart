@@ -6,6 +6,7 @@ import 'package:flutter_online_kachehari/screens/Policy.dart';
 import 'package:flutter_online_kachehari/screens/Services.dart';
 import 'package:flutter_online_kachehari/screens/TermsConditions.dart';
 import 'package:flutter_online_kachehari/screens/TrendingBlogs.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -15,6 +16,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final List<Map<String, String>> reviews = [
+    {'name': 'John Doe', 'review': 'Amazing service! Highly recommend.'},
+    {'name': 'Jane Smith', 'review': 'Very helpful, professional advocates.'},
+  ];
+
+  double newRating = 0;
+  final TextEditingController _reviewController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
+    _reviewController.dispose();
+    super.dispose();
+  }
+
+  List<Map<String, dynamic>> testimonials = [];
+
   var image = [
     {
       'item': 'assets/images/img1.jpg',
@@ -36,7 +55,7 @@ class _HomeState extends State<Home> {
     },
   ];
 
-   var list = [
+  var list = [
     {
       'title': 'Home',
       'subtitle': 'Account details',
@@ -73,13 +92,13 @@ class _HomeState extends State<Home> {
       'icon': Icons.person_4_rounded,
       'trailing': Icons.arrow_forward
     },
-     {
+    {
       'title': 'Documentation',
       'subtitle': 'Read Documentation',
       'icon': Icons.edit_document,
       'trailing': Icons.arrow_forward
     },
-     {
+    {
       'title': 'Policies',
       'subtitle': 'Company policy',
       'icon': Icons.policy,
@@ -91,13 +110,13 @@ class _HomeState extends State<Home> {
       'icon': Icons.info,
       'trailing': Icons.arrow_forward
     },
-     {
+    {
       'title': 'Services',
       'subtitle': 'other services',
       'icon': Icons.design_services,
       'trailing': Icons.arrow_forward
     },
-     {
+    {
       'title': 'Logout',
       'subtitle': 'Exit ',
       'icon': Icons.logout,
@@ -147,11 +166,13 @@ class _HomeState extends State<Home> {
                     Material(
                       borderRadius: BorderRadius.all(Radius.circular(50.0)),
                       elevation: 10,
+                      shadowColor: Colors.white,
+                      color: Colors.black.withOpacity(1),
                       child: Image.asset(
                         'assets/images/logo.png',
-                        width: 90,
-                        height: 90,
-                        color: Colors.green[700],
+                        width: 95,
+                        height: 95,
+                        color: Colors.white,
                       ),
                     ),
                     const Padding(
@@ -182,33 +203,29 @@ class _HomeState extends State<Home> {
                           ? Icon(list[index]['trailing'] as IconData)
                           : null,
                       onTap: () {
-                       if (list[index]['title'] == 'Logout') {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                        if (list[index]['title'] == 'Logout') {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
                             return Login_Screen();
                           }));
-                        }
-                        else if(list[index]['title'] == 'Blog'){
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => TrendingBlogs()));
-                        }
-                       else if(list[index]['title'] == 'Terms & Condition'){
-                         Navigator.of(context).push(
-                             MaterialPageRoute(builder: (context) => const Termsconditions()));
-                       }
-                        else if(list[index]['title'] == 'Support'){
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => Customersupport()));
-                        }
-                       else if(list[index]['title'] == 'Policies'){
-                         Navigator.of(context).push(
-                             MaterialPageRoute(builder: (context) => const Policy()));
-                       }
-                       else if(list[index]['title'] == 'Services'){
-                         Navigator.of(context).push(
-                             MaterialPageRoute(builder: (context) => const Services()));
-                       }
-                         else if(list[index]['title'] == 'Home'){
-                            Navigator.of(context).pop();
+                        } else if (list[index]['title'] == 'Blog') {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => TrendingBlogs()));
+                        } else if (list[index]['title'] ==
+                            'Terms & Condition') {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const TermsConditions()));
+                        } else if (list[index]['title'] == 'Support') {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Customersupport()));
+                        } else if (list[index]['title'] == 'Policies') {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const Policy()));
+                        } else if (list[index]['title'] == 'Services') {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const Services()));
+                        } else if (list[index]['title'] == 'Home') {
+                          Navigator.of(context).pop();
                         }
                       },
                     );
@@ -225,29 +242,29 @@ class _HomeState extends State<Home> {
       ),
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.jpg'),
-            fit: BoxFit.cover,
-          ),
+          // image: DecorationImage(
+          //   image: AssetImage('assets/images/background.jpg'),
+          //   fit: BoxFit.cover,
+          // ),
         ),
         child: ListView(
           children: [
             //add search bar here
-           Container(
+            Container(
               margin: EdgeInsets.symmetric(horizontal: 3.0, vertical: 0.0),
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
               child: Card(
                 shape: RoundedRectangleBorder(
-                 borderRadius: BorderRadius.circular(23.0)
-                ),
+                    borderRadius: BorderRadius.circular(23.0)),
                 elevation: 10,
                 child: const TextField(
                   decoration: InputDecoration(
                     hintText: "Search",
                     prefixIcon: Icon(
-                      Icons.search,size: 32,
+                      Icons.search,
+                      size: 25,
                     ),
                     border: InputBorder.none,
                     suffixIcon: Icon(Icons.mic),
@@ -424,19 +441,17 @@ class _HomeState extends State<Home> {
             Column(
               children: [
                 Container(
-                  height: 50,
-                  width: 200,
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                   padding: EdgeInsets.fromLTRB(40, 5, 10, 0),
                   decoration: BoxDecoration(
                     border: Border.symmetric(
-                        horizontal: BorderSide(color: Colors.white, width: 2)),
+                        horizontal: BorderSide(color: Colors.white, width: 4)),
                   ),
                   child: Text("Other Services",
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 35,
+                        fontWeight: FontWeight.w900,
                         fontFamily: "Cursive",
                       )),
                 ),
@@ -489,14 +504,181 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
+
+
+
+            //users reviews
+            Card(
+              elevation: 10,
+              surfaceTintColor: Colors.deepPurpleAccent,
+              child: Column(
+                children: [
+              // testimonital page here
+              Container(
+                margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                padding: const EdgeInsets.fromLTRB(40, 5, 10, 0),
+                child: const Text(
+                  "Users Review",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 35,
+                    fontWeight: FontWeight.w900,
+                    fontFamily: "cursive",
+                  ),
+                ),
+              ),
+
+              // Display Existing Testimonials
+              if (testimonials.isNotEmpty)
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics:
+                      NeverScrollableScrollPhysics(), // To allow smooth scrolling
+                  itemCount: testimonials.length,
+                  itemBuilder: (context, index) {
+                    final testimonial = testimonials[index];
+                    return Card(
+                      margin:
+                          const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.person,
+                            size: 40,
+                            color: Colors.deepPurpleAccent,
+                          ),
+                          title: Text(
+                            testimonial['username'],
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                          // const SizedBox(height: 8),
+                          trailing: RatingBarIndicator(
+                            rating: testimonial['rating'],
+                            itemBuilder: (context, index) => const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            itemCount: 5,
+                            itemSize: 24.0,
+                            direction: Axis.horizontal,
+                          ),
+                          // const SizedBox(height: 8),
+                          subtitle: Text(
+                            testimonial['review'],
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                )
+              else
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("No reviews yet. Be the first to review!"),
+                ),
+
+              const SizedBox(height: 20),
+
+              // Add New Review Section
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Add Your Review",
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 10),
+                    TextField(
+                      controller: _usernameController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Enter your username",
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    TextField(
+                      controller: _reviewController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Write your review",
+                      ),
+                      maxLines: 3,
+                    ),
+                    const SizedBox(height: 10),
+                    const Text("Rate your experience:"),
+                    RatingBar.builder(
+                      initialRating: 0,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {
+                        setState(() {
+                          newRating = rating;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_usernameController.text.isNotEmpty &&
+                            _reviewController.text.isNotEmpty &&
+                            newRating > 0) {
+                          setState(() {
+                            testimonials.add({
+                              'username': _usernameController.text,
+                              'review': _reviewController.text,
+                              'rating': newRating,
+                            });
+                            _usernameController.clear();
+                            _reviewController.clear();
+                            newRating = 0.0;
+                          });
+                        } else {
+                          // Show an alert or error if fields are not filled in
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text(
+                                "Please fill out all fields and rate your experience"),
+                          ));
+                        }
+                      },
+                      child: const Text(
+                        "Submit Review",
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 50),
+              ],
+              ),
+            ),
+
+
+
           ],
         ),
       ),
 
+
+
       // bottom navigation bar
 
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white.withOpacity(0.2),
+        backgroundColor: Colors.white.withOpacity(0.8),
         // buttonBackgroundColor: const Color.fromARGB(255, 14, 202, 219),
         color: Colors.deepPurple,
         animationDuration: const Duration(milliseconds: 300),
