@@ -2,6 +2,9 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/screens/CustomerSupport.dart';
 import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
+import 'package:flutter_online_kachehari/screens/Policy.dart';
+import 'package:flutter_online_kachehari/screens/Services.dart';
+import 'package:flutter_online_kachehari/screens/TermsConditions.dart';
 import 'package:flutter_online_kachehari/screens/TrendingBlogs.dart';
 
 class Home extends StatefulWidget {
@@ -47,8 +50,8 @@ class _HomeState extends State<Home> {
       'trailing': Icons.arrow_forward
     },
     {
-      'title': 'Setting',
-      'subtitle': 'settings',
+      'title': 'Settings',
+      'subtitle': 'Settings',
       'icon': Icons.settings,
       'trailing': Icons.arrow_forward
     },
@@ -77,7 +80,7 @@ class _HomeState extends State<Home> {
       'trailing': Icons.arrow_forward
     },
      {
-      'title': 'Policies ',
+      'title': 'Policies',
       'subtitle': 'Company policy',
       'icon': Icons.policy,
       'trailing': Icons.arrow_forward
@@ -125,7 +128,7 @@ class _HomeState extends State<Home> {
             );
           },
         ),
-        title: Text("Online Kachehari",
+        title: const Text("Online Kachehari",
             style: TextStyle(
                 color: Colors.white,
                 fontFamily: "Cursive",
@@ -151,12 +154,12 @@ class _HomeState extends State<Home> {
                         color: Colors.green[700],
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Online Kachehari',
                         style: TextStyle(
-                            color: Colors.tealAccent[700],
+                            color: Colors.white,
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                             fontFamily: "Cursive"),
@@ -188,10 +191,22 @@ class _HomeState extends State<Home> {
                             Navigator.of(context).push(
                               MaterialPageRoute(builder: (context) => Trendingblogs()));
                         }
+                       else if(list[index]['title'] == 'Terms & Condition'){
+                         Navigator.of(context).push(
+                             MaterialPageRoute(builder: (context) => const Termsconditions()));
+                       }
                         else if(list[index]['title'] == 'Support'){
                             Navigator.of(context).push(
                               MaterialPageRoute(builder: (context) => Customersupport()));
                         }
+                       else if(list[index]['title'] == 'Policies'){
+                         Navigator.of(context).push(
+                             MaterialPageRoute(builder: (context) => const Policy()));
+                       }
+                       else if(list[index]['title'] == 'Services'){
+                         Navigator.of(context).push(
+                             MaterialPageRoute(builder: (context) => const Services()));
+                       }
                          else if(list[index]['title'] == 'Home'){
                             Navigator.of(context).pop();
                         }
@@ -199,7 +214,7 @@ class _HomeState extends State<Home> {
                     );
                   },
                   separatorBuilder: (context, index) {
-                    return SizedBox();
+                    return const SizedBox();
                   },
                   itemCount: list.length,
                 ),
@@ -268,7 +283,7 @@ class _HomeState extends State<Home> {
                                   border: Border.all(
                                       color: Colors.deepPurple, width: 3),
                                   borderRadius: BorderRadius.circular(36),
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                       color: Colors.white,
                                       blurRadius: 6,
