@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
             );
           },
         ),
-        title: Text("Online Kachehari",
+        title: Text("Online E Kachehari ",
             style: TextStyle(
                 color: Colors.white,
                 fontFamily: "Cursive",
