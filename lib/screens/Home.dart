@@ -189,7 +189,7 @@ class _HomeState extends State<Home> {
                         }
                         else if(list[index]['title'] == 'Blog'){
                             Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => Trendingblogs()));
+                              MaterialPageRoute(builder: (context) => TrendingBlogs()));
                         }
                        else if(list[index]['title'] == 'Terms & Condition'){
                          Navigator.of(context).push(
