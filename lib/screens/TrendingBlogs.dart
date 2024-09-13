@@ -21,22 +21,25 @@ class _TrendingblogsState extends State<Trendingblogs> {
         ),
       ),
       body:ListView.separated(itemBuilder: (context, index){
-        return Card(
-          elevation: 3,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(titles[index],style: TextStyle(fontFamily: "serif",fontSize: 21,fontWeight: FontWeight.bold),),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: (){},child: Text("Read  Now",style:  TextStyle(fontFamily: "serif",fontSize: 16),),
+        return Card(elevation: 3,
+          child: Container(
+            alignment: Alignment.bottomCenter,
+            height: 55,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(titles[index],style: TextStyle(fontFamily: "serif",fontSize: 21,fontWeight: FontWeight.bold),),
                 ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: (){},child: Text("Read  Now",style:  TextStyle(fontFamily: "serif",fontSize: 16),),
+                  ),
+                )
+              ],
+            ),
           ),
         );
       }, separatorBuilder: (context, index){

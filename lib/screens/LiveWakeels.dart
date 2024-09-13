@@ -28,7 +28,7 @@ class _LivewakeelsState extends State<Livewakeels> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Live Lawyer",
+            "Live Advocates",
             style: TextStyle(
                 fontFamily: "serif", fontSize: 21, fontWeight: FontWeight.bold),
           ),
@@ -79,11 +79,18 @@ class _LivewakeelsState extends State<Livewakeels> {
                     ),
                   ],
                 ),
-                const Padding(
+                 Padding(
                   padding:  EdgeInsets.all(11.0),
-                  child: Text(
-                    " Chat Now",
-                    style: TextStyle(fontFamily: "serif", fontSize: 16),
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(border: Border.all(color: Colors.grey),color: Colors.green,),
+                    height: 32,
+                    child: InkWell(onTap: (){},
+                      child: Text(
+                        " Chat Now",
+                        style: TextStyle(fontFamily: "serif", fontSize: 16),
+                      ),
+                    ),
                   ),
                 ),
               ],
