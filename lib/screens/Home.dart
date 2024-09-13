@@ -1,6 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_online_kachehari/screens/Login.dart';
+import 'package:flutter_online_kachehari/screens/CustomerSupport.dart';
+import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
+import 'package:flutter_online_kachehari/screens/TrendingBlogs.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -31,11 +33,11 @@ class _HomeState extends State<Home> {
     },
   ];
 
-  var list = [
+   var list = [
     {
-      'title': 'Account',
+      'title': 'Home',
       'subtitle': 'Account details',
-      'icon': Icons.account_circle,
+      'icon': Icons.home,
       'trailing': Icons.arrow_forward
     },
     {
@@ -45,32 +47,56 @@ class _HomeState extends State<Home> {
       'trailing': Icons.arrow_forward
     },
     {
-      'title': 'Payment',
-      'subtitle': 'Payment details',
-      'icon': Icons.payment,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Settings',
-      'subtitle': 'App settings',
+      'title': 'Setting',
+      'subtitle': 'settings',
       'icon': Icons.settings,
       'trailing': Icons.arrow_forward
     },
     {
-      'title': 'Help',
+      'title': 'Blog',
+      'subtitle': 'Trending blogs',
+      'icon': Icons.description,
+      'trailing': Icons.arrow_forward
+    },
+    {
+      'title': 'Support',
       'subtitle': 'Help and support',
       'icon': Icons.help,
       'trailing': Icons.arrow_forward
     },
     {
-      'title': 'Feedback',
-      'subtitle': 'Feedback and suggestions',
-      'icon': Icons.feedback,
+      'title': 'Be advocate',
+      'subtitle': 'Register as a advocate',
+      'icon': Icons.person_4_rounded,
+      'trailing': Icons.arrow_forward
+    },
+     {
+      'title': 'Documentation',
+      'subtitle': 'Read Documentation',
+      'icon': Icons.edit_document,
+      'trailing': Icons.arrow_forward
+    },
+     {
+      'title': 'Policies ',
+      'subtitle': 'Company policy',
+      'icon': Icons.policy,
       'trailing': Icons.arrow_forward
     },
     {
+      'title': 'Terms & Condition',
+      'subtitle': 'See terms & conditions',
+      'icon': Icons.info,
+      'trailing': Icons.arrow_forward
+    },
+     {
+      'title': 'Services',
+      'subtitle': 'other services',
+      'icon': Icons.design_services,
+      'trailing': Icons.arrow_forward
+    },
+     {
       'title': 'Logout',
-      'subtitle': 'Logout from the app',
+      'subtitle': 'Exit ',
       'icon': Icons.logout,
       'trailing': Icons.arrow_forward
     },
@@ -153,9 +179,21 @@ class _HomeState extends State<Home> {
                           ? Icon(list[index]['trailing'] as IconData)
                           : null,
                       onTap: () {
-                        if (list[index]['title'] == 'Logout') {
-                          Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => Login()));
+                       if (list[index]['title'] == 'Logout') {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                            return Login_Screen();
+                          }));
+                        }
+                        else if(list[index]['title'] == 'Blog'){
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Trendingblogs()));
+                        }
+                        else if(list[index]['title'] == 'Support'){
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Customersupport()));
+                        }
+                         else if(list[index]['title'] == 'Home'){
+                            Navigator.of(context).pop();
                         }
                       },
                     );
@@ -180,18 +218,21 @@ class _HomeState extends State<Home> {
         child: ListView(
           children: [
             //add search bar here
-            Container(
+           Container(
               margin: EdgeInsets.symmetric(horizontal: 3.0, vertical: 0.0),
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: const Card(
+              child: Card(
+                shape: RoundedRectangleBorder(
+                 borderRadius: BorderRadius.circular(23.0)
+                ),
                 elevation: 10,
-                child: TextField(
+                child: const TextField(
                   decoration: InputDecoration(
                     hintText: "Search",
-                    icon: Icon(
-                      Icons.search,
+                    prefixIcon: Icon(
+                      Icons.search,size: 32,
                     ),
                     border: InputBorder.none,
                     suffixIcon: Icon(Icons.mic),
