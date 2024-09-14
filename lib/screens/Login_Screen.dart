@@ -45,7 +45,10 @@ class _Login_ScreenState extends State<Login_Screen> {
                       borderRadius: BorderRadius.circular(50),
                     ),
                     alignment: Alignment.center,
-                    child: Image.asset('assets/images/logo.png',color: Colors.black,),
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      color: Colors.black,
+                    ),
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
@@ -153,16 +156,18 @@ class _Login_ScreenState extends State<Login_Screen> {
                           child: Container(
                             width: 270,
                             child: TextField(
-                              obscureText: _showPassword?false:true,
+                              obscureText: _showPassword ? false : true,
                               controller: _TextFeildController_for_password,
                               decoration: InputDecoration(
                                 suffixIcon: InkWell(
                                   onTap: () {
                                     setState(() {
-                                    _showPassword = !_showPassword;
-                                  });
+                                      _showPassword = !_showPassword;
+                                    });
                                   },
-                                  child: _showPassword? Icon(Icons.visibility):Icon(Icons.visibility_off),
+                                  child: _showPassword
+                                      ? Icon(Icons.visibility)
+                                      : Icon(Icons.visibility_off),
                                 ),
                                 prefixIcon: const Icon(Icons.person),
                                 filled: true,
@@ -194,34 +199,44 @@ class _Login_ScreenState extends State<Login_Screen> {
                           ),
                         ),
                       ),
-                      
+
                       Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) {
-                                    return const ForgotScreen();
-                                  }));
-                                },
-                                child: const Text(
-                                  'Forgot Password?',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontFamily: 'serif',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w800),
-                                ),
-                              ),
-                            ],
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .push(MaterialPageRoute(builder: (context) {
+                                return const ForgotScreen();
+                              }));
+                            },
+                            child: const Text(
+                              'Forgot Password?',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'serif',
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w800),
+                            ),
                           ),
-                         const SizedBox(height: 21,),
-                     ElevatedButton(onPressed: (){login_result();},
-                      style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.lightBlue,elevation:2
+                        ],
                       ),
-                      child:const Text("Login ",style: TextStyle(fontFamily: "serif",fontSize: 21,color: Colors.white),),
+                      const SizedBox(
+                        height: 21,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          login_result();
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.lightBlue, elevation: 2),
+                        child: const Text(
+                          "Login ",
+                          style: TextStyle(
+                              fontFamily: "serif",
+                              fontSize: 21,
+                              color: Colors.white),
+                        ),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -245,7 +260,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(builder: (context) {
-                                      return  SignupScreen();
+                                      return SignupScreen();
                                     }));
                                   },
                                   child: const Center(
@@ -282,7 +297,7 @@ class _Login_ScreenState extends State<Login_Screen> {
       if (email == 'admin@gmail.com') {
         setState(() {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return const Home();
+            return HomePage();
           }));
         });
       }

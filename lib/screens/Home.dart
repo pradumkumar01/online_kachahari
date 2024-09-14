@@ -6,677 +6,547 @@ import 'package:flutter_online_kachehari/screens/Policy.dart';
 import 'package:flutter_online_kachehari/screens/Services.dart';
 import 'package:flutter_online_kachehari/screens/TermsConditions.dart';
 import 'package:flutter_online_kachehari/screens/TrendingBlogs.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
-
+class HomePage extends StatefulWidget {
   @override
-  State<Home> createState() => _HomeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
-  final List<Map<String, String>> reviews = [
-    {'name': 'John Doe', 'review': 'Amazing service! Highly recommend.'},
-    {'name': 'Jane Smith', 'review': 'Very helpful, professional advocates.'},
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  // Fake data for Drawer menu items
+  final List<Map<String, dynamic>> drawerItems = [
+    {'icon': Icons.person, 'title': 'Profile'},
+    {'icon': Icons.description_outlined, 'title': 'Blog'},
+    {'icon': Icons.person, 'title': 'About Us'},
+    {'icon': Icons.person, 'title': 'Contact Us'},
+    {'icon': Icons.settings, 'title': 'Settings'},
+    {'icon': Icons.privacy_tip, 'title': 'Privacy Policies'},
+    {'icon': Icons.payment, 'title': 'Payments'},
+    {'icon': Icons.work, 'title': 'Services'},
+    {'icon': Icons.gavel, 'title': 'Terms and Conditions'},
+    {'icon': Icons.help, 'title': 'Help and Support'},
+    {'icon': Icons.logout, 'title': 'Logout'},
   ];
 
-  double newRating = 0;
-  final TextEditingController _reviewController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    super.dispose();
-    _reviewController.dispose();
-    super.dispose();
+  // Fake data for Top Trending items
+  final List<Map<String, dynamic>> trendingItems = [
+    {'icon': Icons.trending_up, 'title': 'Law Updates'},
+    {'icon': Icons.trending_up, 'title': 'Legal News'},
+    {'icon': Icons.trending_up, 'title': 'Court Hearings'},
+    {'icon': Icons.trending_up, 'title': 'Case Studies'},
+    {'icon': Icons.trending_up, 'title': 'New Amendments'},
+  ];
+
+  // Fake data for Live Advocates
+  final List<Map<String, dynamic>> liveAdvocates = [
+    {'name': 'Advocate A', 'icon': Icons.person},
+    {'name': 'Advocate B', 'icon': Icons.person},
+    {'name': 'Advocate C', 'icon': Icons.person},
+    {'name': 'Advocate D', 'icon': Icons.person},
+    {'name': 'Advocate E', 'icon': Icons.person},
+  ];
+
+  // Fake data for Other Services
+  final List<Map<String, dynamic>> otherServices = [
+    {'icon': Icons.miscellaneous_services, 'title': 'Legal Advice'},
+    {'icon': Icons.miscellaneous_services, 'title': 'Document Review'},
+    {'icon': Icons.miscellaneous_services, 'title': 'Consultation'},
+    {'icon': Icons.miscellaneous_services, 'title': 'Representation'},
+    {'icon': Icons.miscellaneous_services, 'title': 'Case Filing'},
+  ];
+
+  // Fake data for search suggestions
+  final List<String> searchSuggestions = [
+    'Advocate A',
+    'Legal News',
+    'Law Updates',
+    'Court Hearings',
+    'Case Studies'
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
-
-  List<Map<String, dynamic>> testimonials = [];
-
-  var image = [
-    {
-      'item': 'assets/images/img1.jpg',
-    },
-    {
-      'item': 'assets/images/img2.jpg',
-    },
-    {
-      'item': 'assets/images/img3.jpg',
-    },
-    {
-      'item': 'assets/images/img4.jpg',
-    },
-    {
-      'item': 'assets/images/img5.jpg',
-    },
-    {
-      'item': 'assets/images/img6.jpg',
-    },
-  ];
-
-  var list = [
-    {
-      'title': 'Home',
-      'subtitle': 'Account details',
-      'icon': Icons.home,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Profile',
-      'subtitle': 'Profile details',
-      'icon': Icons.person,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Settings',
-      'subtitle': 'Settings',
-      'icon': Icons.settings,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Blog',
-      'subtitle': 'Trending blogs',
-      'icon': Icons.description,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Support',
-      'subtitle': 'Help and support',
-      'icon': Icons.help,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Be advocate',
-      'subtitle': 'Register as a advocate',
-      'icon': Icons.person_4_rounded,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Documentation',
-      'subtitle': 'Read Documentation',
-      'icon': Icons.edit_document,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Policies',
-      'subtitle': 'Company policy',
-      'icon': Icons.policy,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Terms & Condition',
-      'subtitle': 'See terms & conditions',
-      'icon': Icons.info,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Services',
-      'subtitle': 'other services',
-      'icon': Icons.design_services,
-      'trailing': Icons.arrow_forward
-    },
-    {
-      'title': 'Logout',
-      'subtitle': 'Exit ',
-      'icon': Icons.logout,
-      'trailing': Icons.arrow_forward
-    },
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          TextButton(
-              onPressed: () {},
-              child: Icon(
-                Icons.notifications_none,
-                color: Colors.white,
-              ))
-        ],
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              icon: Icon(Icons.menu),
-              color: Colors.white,
-            );
-          },
-        ),
-        title: const Text("Online Kachehari",
+        backgroundColor: Colors.deepPurple, // Matching app bar color
+        title: Text('Online Kachehari',
             style: TextStyle(
-                color: Colors.white,
-                fontFamily: "Cursive",
-                fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.deepPurple,
+              fontSize: 20,
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+            )),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.notifications,
+              color: Colors.white,
+            ), // Changed to notification icon
+            onPressed: () {
+              // Add notification functionality here
+            },
+          ),
+        ],
       ),
       drawer: Drawer(
-        backgroundColor: Colors.deepPurple,
-        child: Column(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              margin: EdgeInsets.all(10.0),
-              child: Container(
-                child: Column(
-                  children: [
-                    Material(
-                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                      elevation: 10,
-                      shadowColor: Colors.white,
-                      color: Colors.black.withOpacity(1),
-                      child: Image.asset(
-                        'assets/images/logo.png',
-                        width: 95,
-                        height: 95,
-                        color: Colors.white,
-                      ),
+              decoration: BoxDecoration(
+                color: Colors.deepPurple, // Matching drawer color
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.white,
+                    child: Icon(
+                      Icons.person,
+                      size: 50,
+                      color: Colors.deepPurple,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'Online Kachehari',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Cursive"),
-                      ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Online Kachehari',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              child: Container(
-                color: Colors.white,
-                child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(list[index]['title'] as String),
-                      subtitle: Text(list[index]['subtitle'] as String),
-                      leading: Icon(list[index]['icon'] as IconData),
-                      trailing: list[index]['trailing'] != null
-                          ? Icon(list[index]['trailing'] as IconData)
-                          : null,
-                      onTap: () {
-                        if (list[index]['title'] == 'Logout') {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return Login_Screen();
-                          }));
-                        } else if (list[index]['title'] == 'Blog') {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => TrendingBlogs()));
-                        } else if (list[index]['title'] ==
-                            'Terms & Condition') {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const TermsConditions()));
-                        } else if (list[index]['title'] == 'Support') {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Customersupport()));
-                        } else if (list[index]['title'] == 'Policies') {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const Policy()));
-                        } else if (list[index]['title'] == 'Services') {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const Services()));
-                        } else if (list[index]['title'] == 'Home') {
-                          Navigator.of(context).pop();
-                        }
-                      },
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return const SizedBox();
-                  },
-                  itemCount: list.length,
-                ),
-              ),
-            ),
+            ...drawerItems.map((item) {
+              return ListTile(
+                minTileHeight: 5,
+                leading: Icon(item['icon'], color: Colors.deepPurple),
+                title: Text(item['title']),
+                onTap: () {
+                  if (item['title'] == 'Profile') {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  } else if (item['title'] == 'Blog') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => TrendingBlogs()));
+                  } else if (item['title'] == 'About Us') {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return Scaffold(
+                        appBar: AppBar(
+                          title: Text('About Us'),
+                        ),
+                        body: Center(
+                          child: Text('About Us Page'),
+                        ),
+                      );
+                    }));
+                  } else if (item['title'] == 'Contact Us') {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return Scaffold(
+                        appBar: AppBar(
+                          title: Text('Contact Us'),
+                        ),
+                        body: Center(
+                          child: Text('Contact Us Page'),
+                        ),
+                      );
+                    }));
+                  } else if (item['title'] == 'Settings') {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return Scaffold(
+                        appBar: AppBar(
+                          title: Text('Settings'),
+                        ),
+                        body: Center(
+                          child: Text('Settings Page'),
+                        ),
+                      );
+                    }));
+                  } else if (item['title'] == 'Privacy Policies') {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Policy()));
+                  } else if (item['title'] == 'Payments') {
+                    // Add navigation to payments page
+                  } else if (item['title'] == 'Services') {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Services()));
+                  } else if (item['title'] == 'Terms and Conditions') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => TermsConditions()));
+                  } else if (item['title'] == 'Help and Support') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Customersupport()));
+                  } else if (item['title'] == 'Logout') {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Login_Screen()));
+                  }
+                },
+              );
+            }).toList(),
           ],
         ),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          // image: DecorationImage(
-          //   image: AssetImage('assets/images/background.jpg'),
-          //   fit: BoxFit.cover,
-          // ),
-        ),
-        child: ListView(
-          children: [
-            //add search bar here
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 3.0, vertical: 0.0),
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              child: Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(23.0)),
-                elevation: 10,
-                child: const TextField(
-                  decoration: InputDecoration(
-                    hintText: "Search",
-                    prefixIcon: Icon(
-                      Icons.search,
-                      size: 25,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Search bar with fake suggestions
+              Autocomplete<String>(
+                optionsBuilder: (TextEditingValue textEditingValue) {
+                  if (textEditingValue.text.isEmpty) {
+                    return const Iterable<String>.empty();
+                  }
+                  return searchSuggestions.where((String suggestion) {
+                    return suggestion
+                        .contains(textEditingValue.text.toLowerCase());
+                  });
+                },
+                onSelected: (String selection) {
+                  print('You selected: $selection');
+                },
+                fieldViewBuilder:
+                    (context, controller, focusNode, onEditingComplete) {
+                  return TextField(
+                    controller: controller,
+                    focusNode: focusNode,
+                    decoration: InputDecoration(
+                      hintText: 'Search...',
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey[200],
                     ),
-                    border: InputBorder.none,
-                    suffixIcon: Icon(Icons.mic),
-                    hintStyle: TextStyle(color: Colors.grey),
-                    contentPadding: EdgeInsets.all(10),
+                  );
+                },
+              ),
+              SizedBox(height: 20),
+
+              // Top Trending Section
+              Row(
+                children: [
+                  Text('Top Legal Trends',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Spacer(),
+                  TextButton(
+                    onPressed: () {
+                      // Add navigation to top legal trends page
+                    },
+                    child: Text('View All'),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Container(
+                height: 161,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: trendingItems.length,
+                  separatorBuilder: (context, index) => SizedBox(width: 10),
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                Card(
+                                  elevation: 2,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50)),
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundColor: Colors.deepPurple[100],
+                                    child: Icon(trendingItems[index]['icon'],
+                                        size: 30, color: Colors.deepPurple),
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  trendingItems[index]['title'],
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                // Add navigation to trending item details
+                              },
+                              child: Text('View Details'),
+                            ),
+                          ],
+                        )
+                      ],
+                    );
+                  },
+                ),
+              ),
+              Container(),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Text('Top Advocates',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Spacer(),
+                  TextButton(
+                    onPressed: () {
+                      // Add navigation to top advocates page
+                    },
+                    child: Text('View All'),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Container(
+                height: 161,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: trendingItems.length,
+                  separatorBuilder: (context, index) => SizedBox(width: 10),
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                Card(
+                                  elevation: 2,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50)),
+                                  child: CircleAvatar(
+                                    radius: 40,
+                                    backgroundColor: Colors.deepPurple[100],
+                                    child: Icon(trendingItems[index]['icon'],
+                                        size: 30, color: Colors.deepPurple),
+                                  ),
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  trendingItems[index]['title'],
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                // Add navigation to trending item details
+                              },
+                              child: Text('View Details'),
+                            ),
+                          ],
+                        )
+                      ],
+                    );
+                  },
+                ),
+              ),
+              Container(),
+              SizedBox(height: 20),
+
+              // Vakil Logo Section
+              Text('Vakil Logo',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              SizedBox(height: 10),
+              Center(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  elevation: 4,
+                  child: Container(
+                    height: 250,
+                    width: 250,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/vakil_logo.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
+              SizedBox(height: 20),
 
-//top advocates
-
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal, // Set to horizontal scrolling
-              child: Row(
-                children: List.generate(image.length, (index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.all(2.0), // Add padding between items
-                    child: Column(
+              // Live Advocate Section
+              Row(
+                children: [
+                  Text('Live Advocates',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Spacer(),
+                  TextButton(
+                    onPressed: () {
+                      // Add navigation to live advocates page
+                    },
+                    child: Text('View All'),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Container(
+                height: 130,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: liveAdvocates.length,
+                  separatorBuilder: (context, index) => SizedBox(width: 10),
+                  itemBuilder: (context, index) {
+                    return Column(
                       children: [
                         Card(
-                          elevation: 10,
+                          elevation: 2,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(36),
-                          ),
-                          child: Stack(
-                            children: [
-                              Container(
-                                height: 75, // Adjust height of the container
-                                width: 75, // Adjust width of the container
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Colors.deepPurple, width: 3),
-                                  borderRadius: BorderRadius.circular(36),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Colors.white,
-                                      blurRadius: 6,
-                                      spreadRadius: 2,
-                                      offset: Offset(0, 0),
-                                    ),
-                                  ],
-                                  color: Colors.black,
-                                  image: DecorationImage(
-                                    image: AssetImage(image[index]['item']!),
-                                    fit: BoxFit
-                                        .cover, // Cover the entire container
-                                  ),
-                                ),
-                              ),
-                            ],
+                              borderRadius: BorderRadius.circular(50)),
+                          child: CircleAvatar(
+                            radius: 40,
+                            backgroundColor: Colors.green[100],
+                            child: Icon(liveAdvocates[index]['icon'],
+                                size: 30, color: Colors.green),
                           ),
                         ),
+                        SizedBox(height: 5),
+                        Text(
+                          liveAdvocates[index]['name'],
+                          style: TextStyle(fontSize: 14),
+                        ),
                       ],
-                    ),
-                  );
-                }),
+                    );
+                  },
+                ),
               ),
-            ),
+              SizedBox(height: 20),
 
-            SizedBox(
-              height: 10,
-            ),
-
-// advocate image here
-            Column(
-              children: [
-                //add image here
-                Card(
-                  elevation: 10,
-                  shape: Border.all(
-                    color: Colors.white,
-                    width: 4,
-                  ),
-                  child: Container(
-                    height: 200,
-                    width: 350,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 10,
-                            offset: Offset(0, 5),
-                          ),
+              // Other Services Section with Cards
+              Text('Other Services',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              SizedBox(height: 10),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: otherServices.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    elevation: 2,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(otherServices[index]['icon'],
+                              size: 40, color: Colors.deepPurple),
+                          SizedBox(height: 10),
+                          Text(otherServices[index]['title']),
                         ],
                       ),
                     ),
-                  ),
-                ),
-
-                const SizedBox(
-                  height: 20,
-                ),
-              ],
-            ),
-
-// live advocate here
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal, // Set to horizontal scrolling
-              child: Row(
-                children: List.generate(image.length, (index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.all(2.0), // Add padding between items
-                    child: Column(
-                      children: [
-                        Card(
-                          elevation: 10,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(36),
-                          ),
-                          child: Stack(
-                            children: [
-                              Container(
-                                height: 75, // Adjust height of the container
-                                width: 75, // Adjust width of the container
-                                decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: Colors.grey, width: 3),
-                                  borderRadius: BorderRadius.circular(36),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.white,
-                                      blurRadius: 6,
-                                      spreadRadius: 2,
-                                      offset: Offset(0, 0),
-                                    ),
-                                  ],
-                                  image: DecorationImage(
-                                    image: AssetImage(image[index]['item']!),
-                                    fit: BoxFit
-                                        .cover, // Cover the entire container
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 10,
-                                left: 15,
-                                child: Row(
-                                  children: const [
-                                    Icon(
-                                      Icons.live_tv_outlined,
-                                      color: Colors.red,
-                                      size: 14,
-                                    ),
-                                    SizedBox(width: 3),
-                                    Text(
-                                      "Live",
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
                   );
-                }),
+                },
               ),
-            ),
+              SizedBox(height: 20),
 
-            SizedBox(
-              height: 20,
-            ),
-
-//other services here
-            Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                  padding: EdgeInsets.fromLTRB(40, 5, 10, 0),
-                  decoration: BoxDecoration(
-                    border: Border.symmetric(
-                        horizontal: BorderSide(color: Colors.white, width: 4)),
-                  ),
-                  child: Text("Other Services",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: "Cursive",
-                      )),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      height: 150,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.yellow[100], shape: BoxShape.rectangle),
-                    ),
-                    Container(
-                      height: 150,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.yellow[100], shape: BoxShape.rectangle),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      height: 150,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.yellow[100], shape: BoxShape.rectangle),
-                    ),
-                    Container(
-                      height: 150,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          color: Colors.yellow[100], shape: BoxShape.rectangle),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 260,
-                ),
-              ],
-            ),
-
-
-
-            //users reviews
-            Card(
-              elevation: 10,
-              surfaceTintColor: Colors.deepPurpleAccent,
-              child: Column(
+              //add social media icons with there links
+              Row(
                 children: [
-              // testimonital page here
-              Container(
-                margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                padding: const EdgeInsets.fromLTRB(40, 5, 10, 0),
-                child: const Text(
-                  "Users Review",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 35,
-                    fontWeight: FontWeight.w900,
-                    fontFamily: "cursive",
+                  Text('Follow Us',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Spacer(),
+                ],
+              ),
+
+              SizedBox(height: 10),
+
+              Row(
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.facebook,
+                      color: Colors.blue,
+                    ),
+                    onPressed: () {},
                   ),
-                ),
+                  IconButton(
+                    icon: Icon(
+                      FontAwesomeIcons.instagram,
+                      color: Colors.pink,
+                    ),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      FontAwesomeIcons.linkedin,
+                      color: Colors.blue,
+                    ),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      FontAwesomeIcons.youtube,
+                      color: Colors.red,
+                    ),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      FontAwesomeIcons.twitter,
+                      color: Colors.blue,
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
               ),
 
-              // Display Existing Testimonials
-              if (testimonials.isNotEmpty)
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics:
-                      NeverScrollableScrollPhysics(), // To allow smooth scrolling
-                  itemCount: testimonials.length,
-                  itemBuilder: (context, index) {
-                    final testimonial = testimonials[index];
-                    return Card(
-                      margin:
-                          const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.person,
-                            size: 40,
-                            color: Colors.deepPurpleAccent,
-                          ),
-                          title: Text(
-                            testimonial['username'],
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
-                          // const SizedBox(height: 8),
-                          trailing: RatingBarIndicator(
-                            rating: testimonial['rating'],
-                            itemBuilder: (context, index) => const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            itemCount: 5,
-                            itemSize: 24.0,
-                            direction: Axis.horizontal,
-                          ),
-                          // const SizedBox(height: 8),
-                          subtitle: Text(
-                            testimonial['review'],
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                )
-              else
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("No reviews yet. Be the first to review!"),
-                ),
-
-              const SizedBox(height: 20),
-
-              // Add New Review Section
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Add Your Review",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 10),
-                    TextField(
-                      controller: _usernameController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Enter your username",
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    TextField(
-                      controller: _reviewController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Write your review",
-                      ),
-                      maxLines: 3,
-                    ),
-                    const SizedBox(height: 10),
-                    const Text("Rate your experience:"),
-                    RatingBar.builder(
-                      initialRating: 0,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      onRatingUpdate: (rating) {
-                        setState(() {
-                          newRating = rating;
-                        });
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (_usernameController.text.isNotEmpty &&
-                            _reviewController.text.isNotEmpty &&
-                            newRating > 0) {
-                          setState(() {
-                            testimonials.add({
-                              'username': _usernameController.text,
-                              'review': _reviewController.text,
-                              'rating': newRating,
-                            });
-                            _usernameController.clear();
-                            _reviewController.clear();
-                            newRating = 0.0;
-                          });
-                        } else {
-                          // Show an alert or error if fields are not filled in
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text(
-                                "Please fill out all fields and rate your experience"),
-                          ));
-                        }
-                      },
-                      child: const Text(
-                        "Submit Review",
-                      ),
-                    ),
-                  ],
-                ),
+              //add copy right text
+              Row(
+                children: [
+                  Text('© 2024 Online Kachehari. All Rights Reserved.',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                      )),
+                  Spacer(),
+                ],
               ),
-              SizedBox(height: 50),
-              ],
-              ),
-            ),
 
-
-
-          ],
+              // Feedback Form with Star Rating
+            ],
+          ),
         ),
       ),
-
-
-
-      // bottom navigation bar
-
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.white.withOpacity(0.8),
         // buttonBackgroundColor: const Color.fromARGB(255, 14, 202, 219),
