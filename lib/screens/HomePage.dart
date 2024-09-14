@@ -6,6 +6,7 @@ import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
 import 'package:flutter_online_kachehari/screens/Notification.dart';
 import 'package:flutter_online_kachehari/screens/Policy.dart';
 import 'package:flutter_online_kachehari/screens/Services.dart';
+import 'package:flutter_online_kachehari/screens/Settings.dart';
 import 'package:flutter_online_kachehari/screens/TermsConditions.dart';
 import 'package:flutter_online_kachehari/screens/TrendingBlogs.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -173,17 +174,8 @@ class _HomePageState extends State<HomePage> {
                       );
                     }));
                   } else if (item['title'] == 'Settings') {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return Scaffold(
-                        appBar: AppBar(
-                          title: Text('Settings'),
-                        ),
-                        body: Center(
-                          child: Text('Settings Page'),
-                        ),
-                      );
-                    }));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => SettingsPage()));
                   } else if (item['title'] == 'Privacy Policies') {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => Policy()));
