@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_online_kachehari/components/toaster/toast.dart';
 import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
 import 'package:flutter_online_kachehari/screens/alert.dart';
 
@@ -373,7 +375,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.lightBlue, elevation: 2
                       ),
-                      child: const Text("Login ", style: TextStyle(
+                      child: const Text("Sign Up", style: TextStyle(
                           fontFamily: "serif", fontSize: 21, color: Colors.white
                       ),),
                     ),
@@ -406,7 +408,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 },
                                 child: const Center(
                                   child: Text(
-                                    'Login ',
+                                    'Login',
                                     style: TextStyle(
                                         fontSize: 21,
                                         fontFamily: 'serif',
@@ -469,26 +471,67 @@ class _SignupScreenState extends State<SignupScreen> {
       //Ready to Submit
       final Dio dio = Dio();
       Response response;
+
       var userdata = {
-        "name":name,
-        "email" : email,
-        "password" : password,
-        "mobile" : mobile,
-        "gender" : gender,
+        "name": name,
+        "email": email,
+        "password": password,
+        "mobile": mobile,
+        "gender": gender,
       };
+
       final formData = FormData.fromMap(userdata);
-      response = await dio.post(Urls().getApiUrl("create_users"), data: formData);
-      print(response.data.toString());
-      //JSON Response
-         Map<String,dynamic> userResponse = json.decode(response.toString());
-         dynamic code = userResponse["code"];
-         dynamic message = userResponse["message"];
-         showAlert(context, message);
+
+      try {
+        response = await dio.post(Urls().getApiUrl("create_users"), data: formData);
+
+        // Print response details
+        print(response.data.toString());
+        print('Status code ===> ${response.statusCode}');
+
+        // Handle JSON Response
+        Map<String, dynamic> userResponse = json.decode(response.toString());
+        dynamic code = userResponse["code"];
+        dynamic message = userResponse["message"];
+        dynamic data = userResponse["data"];
+
+        print("http status code : ${code}");
+
+        if (code == 201) {
+          // showAlert(context, "Register Success");
+          showToaster("Register Success");
+          Timer(const Duration(seconds: 3),(){
+            Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
+              return Login_Screen();
+            },));
+          });
+        } else if (code == 200) {
+          showAlert(context, "User Already Exist, Please Login ");
+        } else {
+          showAlert(context, "Unexpected response code: $code");
+        }
+
+      } on DioException catch (e) {
+        // Handle Dio specific exceptions
+        if (e.response != null) {
+          print('DioException response: ${e.response}');
+
+          showAlert(context, "Error: ${e.response?.statusCode} - ${e.response?.statusMessage}");
+        } else {
+          // If there is no response object in the exception
+          print('DioException error: ${e.message}');
+          showAlert(context, "Network Error: ${e.message}");
+        }
+      } catch (e) {
+        // Handle other exceptions
+        print('General exception: $e');
+        showAlert(context, "Unexpected Error: $e");
+      }
     }else{
       showAlert(context, "Password and Confirm Password Does not Match");
       return;
     }
 
-  } //end of method
+  }
 
 }
