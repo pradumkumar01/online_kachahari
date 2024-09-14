@@ -26,8 +26,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
             ),
           ),
           child: SingleChildScrollView(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               Column(
                 children: <Widget>[
                   SizedBox(
@@ -42,7 +41,10 @@ class _ForgotScreenState extends State<ForgotScreen> {
                           borderRadius: BorderRadius.circular(50),
                         ),
                         alignment: Alignment.topLeft,
-                        child: Image.asset('assets/images/logo.png',color: Colors.black,),
+                        child: Image.asset(
+                          'assets/images/logo.png',
+                          color: Colors.black,
+                        ),
                       ),
                     ],
                   ),
@@ -116,11 +118,19 @@ class _ForgotScreenState extends State<ForgotScreen> {
                       const SizedBox(
                         height: 32,
                       ),
-                     ElevatedButton(onPressed: (){submit_check();},
-                      style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.lightBlue,elevation:2
-                      ),
-                      child:const Text("Submit",style: TextStyle(fontFamily: "serif",fontSize: 21,color: Colors.white),),
+                      ElevatedButton(
+                        onPressed: () {
+                          submit_check();
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.lightBlue, elevation: 2),
+                        child: const Text(
+                          "Submit",
+                          style: TextStyle(
+                              fontFamily: "serif",
+                              fontSize: 21,
+                              color: Colors.white),
+                        ),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,

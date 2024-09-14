@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_online_kachehari/screens/HomePage.dart';
+
 import 'package:flutter_online_kachehari/screens/SplashScreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -17,7 +19,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splashscreen(),
+
+      home: HomePage(),
     );
   }
 }
