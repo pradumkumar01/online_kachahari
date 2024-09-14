@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_online_kachehari/components/update_profile/edit.dart';
 import 'package:flutter_online_kachehari/screens/CustomerSupport.dart';
 import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
 import 'package:flutter_online_kachehari/screens/Notification.dart';
@@ -143,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   if (item['title'] == 'Profile') {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => HomePage()));
+                        MaterialPageRoute(builder: (context) => Edit()));
                   } else if (item['title'] == 'Blog') {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => TrendingBlogs()));
@@ -186,7 +187,8 @@ class _HomePageState extends State<HomePage> {
                   } else if (item['title'] == 'Privacy Policies') {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => Policy()));
-                  } else if (item['title'] == 'Payments') {
+                  }
+                  else if (item['title'] == 'Payments') {
                     // Add navigation to payments page
                   } else if (item['title'] == 'Services') {
                     Navigator.of(context).push(
