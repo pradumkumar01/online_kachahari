@@ -72,9 +72,8 @@ class _LivewakeelsState extends State<Livewakeels> {
                       child: Text(
                         titles[index],
                         style: const TextStyle(
-                            fontFamily: "serif",
-                            fontSize: 21,
-                            fontWeight: FontWeight.bold),
+                            fontFamily: "serif",color: Colors.black,
+                            fontSize: 16,),
                       ),
                     ),
                   ],

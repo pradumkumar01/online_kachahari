@@ -212,11 +212,12 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.only(left: 4.0, right: 4.0),
         child: Container(
           decoration: const BoxDecoration(
-              // image: DecorationImage(
-              //   image: AssetImage('assets/images/background.jpg'),
-              //   fit: BoxFit.cover,
-              // ),
-              color: Colors.white),
+              image: DecorationImage(
+                image: AssetImage('assets/images/background.jpg'),
+                fit: BoxFit.cover,
+              ),
+              //color: Colors.white
+              ),
           child: ListView(
             children: [
               //add search bar here
@@ -309,10 +310,10 @@ class _HomeState extends State<Home> {
                         return Livewakeels();
                       }));
                     },
-                    child: const Text('Top advocates',
+                    child: const Text('See all',
                         style: TextStyle(
                             fontSize: 16,
-                            color: Colors.lightBlue,
+                            color: Colors.black,
                             fontFamily: "serif",
                             fontWeight: FontWeight.w700))),
               ),
