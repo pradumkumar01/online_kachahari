@@ -93,7 +93,7 @@ class _HomeState extends State<Home> {
       'title': 'Services',
       'subtitle': 'other services',
       'icon': Icons.design_services,
-      'trailing': Icons.arrow_forward
+      'trailing': Icons.exit_to_app
     },
     {
       'title': 'Logout',
@@ -176,9 +176,9 @@ class _HomeState extends State<Home> {
                     return ListTile(
                       title: Text(list[index]['title'] as String),
                       subtitle: Text(list[index]['subtitle'] as String),
-                      leading: Icon(list[index]['icon'] as IconData),
+                      leading: Icon(list[index]['icon'] as IconData,color: Colors.lightBlue,),
                       trailing: list[index]['trailing'] != null
-                          ? Icon(list[index]['trailing'] as IconData)
+                          ? Icon(list[index]['trailing'] as IconData,color: Colors.lightBlue,)
                           : null,
                       onTap: () {
                         if (list[index]['title'] == 'Logout') {
@@ -212,11 +212,11 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.only(left: 4.0, right: 4.0),
         child: Container(
           decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/background.jpg'),
-                fit: BoxFit.cover,
-              ),
-              //color: Colors.white
+              // image: DecorationImage(
+              //   image: AssetImage('assets/images/background.jpg'),
+              //   fit: BoxFit.cover,
+              // ),
+              color: Colors.white
               ),
           child: ListView(
             children: [
@@ -247,9 +247,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-
               //top advocates
-
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal, // Set to horizontal scrolling
                 child: Row(
