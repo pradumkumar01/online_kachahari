@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/components/update_profile/edit.dart';
 import 'package:flutter_online_kachehari/screens/CustomerSupport.dart';
 import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
+import 'package:flutter_online_kachehari/screens/Notification.dart';
 import 'package:flutter_online_kachehari/screens/Policy.dart';
 import 'package:flutter_online_kachehari/screens/Services.dart';
 import 'package:flutter_online_kachehari/screens/TermsConditions.dart';
@@ -85,6 +86,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
               fontWeight: FontWeight.w700,
             )),
+        leading: Builder(builder: (context){
+            return IconButton(onPressed: (){
+              Scaffold.of(context).openDrawer();
+            }, icon: Icon(Icons.menu, color: Colors.white,));
+        }),
         actions: [
           IconButton(
             icon: Icon(
@@ -92,6 +98,8 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ), // Changed to notification icon
             onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => NotificationPage()));
               // Add notification functionality here
             },
           ),
@@ -574,12 +582,14 @@ class _HomePageState extends State<HomePage> {
             Icons.notifications,
             size: 26,
             color: Colors.white,
+
           ),
           Icon(
             Icons.person,
             size: 26,
             color: Colors.white,
           ),
+
         ],
       ),
     );
