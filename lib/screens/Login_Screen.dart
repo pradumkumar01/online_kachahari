@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/screens/ForgotScreen.dart';
-import 'package:flutter_online_kachehari/screens/Home.dart';
+import 'package:flutter_online_kachehari/screens/HomePage.dart';
 import 'package:flutter_online_kachehari/screens/SignUpScreen.dart';
 import 'package:flutter_online_kachehari/screens/alert.dart';
 
