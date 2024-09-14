@@ -10,9 +10,30 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final _controllerFor_name = TextEditingController();
+  final _controllerFor_email = TextEditingController();
+  final _controllerFor_mobile = TextEditingController();
   final _controllerFor_password = TextEditingController();
   final _controllerFor_second_password = TextEditingController();
   String _signUp_res = '';
+  late String _selectedGender;
+
+    void _handleGenderChange(String? value){
+      setState(() {
+
+        _selectedGender = value ?? 'Male';
+      });
+    }
+    @override
+    void initState(){
+      super.initState();
+      _controllerFor_name.text="";
+      _controllerFor_email.text="";
+      _controllerFor_mobile.text="";
+      _controllerFor_password.text="";
+      _controllerFor_second_password.text="";
+      _selectedGender = "Male";
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

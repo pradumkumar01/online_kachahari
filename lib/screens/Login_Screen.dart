@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/screens/ForgotScreen.dart';
 import 'package:flutter_online_kachehari/screens/Home.dart';
+import 'package:flutter_online_kachehari/screens/SignUpScreen.dart';
 import 'package:flutter_online_kachehari/screens/SplashScreen.dart';
 import 'package:flutter_online_kachehari/screens/alert.dart';
 
@@ -245,7 +246,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(builder: (context) {
-                                      return  Splashscreen();
+                                      return  SignupScreen();
                                     }));
                                   },
                                   child: const Center(
