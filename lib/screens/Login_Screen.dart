@@ -54,7 +54,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                       style: TextStyle(
                         fontSize: 24,
                         fontFamily: 'cursive',
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w900,
                       ),
                       textAlign: TextAlign.center,
@@ -67,7 +67,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                       style: TextStyle(
                         fontSize: 28,
                         fontFamily: 'serif',
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w800,
                       ),
                       textAlign: TextAlign.center,
@@ -234,7 +234,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                 height: 61,
                               ),
                               const Text(
-                                'Dont have account? ',
+                                'Don\'t have account? ',
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontFamily: 'serif',

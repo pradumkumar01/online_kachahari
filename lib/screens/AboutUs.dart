@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class Policy extends StatefulWidget {
-  const Policy({super.key});
+class Aboutus extends StatefulWidget {
+  const Aboutus({super.key});
+
+
 
   @override
-  State<Policy> createState() => _PolicyState();
+  State<Aboutus> createState() => _AboutusState();
 }
 
-class _PolicyState extends State<Policy> {
-  WebViewController controller = WebViewController()..loadRequest(Uri.parse('https://online-kch.seeksolution.in/pages/policy'));
+class _AboutusState extends State<Aboutus> {
+  WebViewController controller = WebViewController()..loadRequest(Uri.parse('https://online-kch.seeksolution.in/pages/about'));
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text("Policies",style: TextStyle(fontFamily: "serif",fontSize: 21,fontWeight: FontWeight.bold),),
+        title: const Text("About Us",style: TextStyle(fontFamily: "serif",fontSize: 21,fontWeight: FontWeight.bold),),
 
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -25,7 +27,7 @@ class _PolicyState extends State<Policy> {
           ),
         ),
       ),
-      body: WebViewWidget(controller: controller),
+      body: WebViewWidget(controller: controller)
     );
   }
 }

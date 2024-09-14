@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_online_kachehari/screens/AboutUs.dart';
 import 'package:flutter_online_kachehari/screens/CustomerSupport.dart';
 import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
 import 'package:flutter_online_kachehari/screens/Policy.dart';
@@ -79,6 +80,12 @@ class _HomeState extends State<Home> {
       'icon': Icons.edit_document,
       'trailing': Icons.arrow_forward
     },
+     {
+       'title': 'About',
+       'subtitle': 'About Us',
+       'icon': Icons.group_add_outlined,
+       'trailing': Icons.arrow_forward
+     },
      {
       'title': 'Policies',
       'subtitle': 'Company policy',
@@ -199,6 +206,10 @@ class _HomeState extends State<Home> {
                             Navigator.of(context).push(
                               MaterialPageRoute(builder: (context) => Customersupport()));
                         }
+                       else if(list[index]['title'] == 'About'){
+                         Navigator.of(context).push(
+                             MaterialPageRoute(builder: (context) => const Aboutus()));
+                       }
                        else if(list[index]['title'] == 'Policies'){
                          Navigator.of(context).push(
                              MaterialPageRoute(builder: (context) => const Policy()));
@@ -517,7 +528,8 @@ class _HomeState extends State<Home> {
             color: Colors.white,
           ),
           Icon(
-            Icons.notifications,
+            Icons.feed_sharp,
+
             size: 26,
             color: Colors.white,
           ),

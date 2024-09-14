@@ -40,7 +40,7 @@ class _SplashscreenState extends State<Splashscreen> {
             height: 3,
           ),
         const  Text(
-            'Online Kachehri',
+            'Online Kachehari',
             style: TextStyle(
                 fontSize: 16,
                 color: Colors.black,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class Termsconditions extends StatefulWidget {
   const Termsconditions({super.key});
@@ -8,6 +9,7 @@ class Termsconditions extends StatefulWidget {
 }
 
 class _TermsconditionsState extends State<Termsconditions> {
+  WebViewController controller = WebViewController()..loadRequest(Uri.parse('https://online-kch.seeksolution.in/pages/terms-condition'));
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -23,6 +25,7 @@ class _TermsconditionsState extends State<Termsconditions> {
           ),
         ),
       ),
+      body: WebViewWidget(controller: controller),
     );
   }
 }

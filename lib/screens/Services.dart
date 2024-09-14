@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class Services extends StatefulWidget {
   const Services({super.key});
@@ -8,6 +9,7 @@ class Services extends StatefulWidget {
 }
 
 class _ServicesState extends State<Services> {
+  WebViewController controller = WebViewController()..loadRequest(Uri.parse('https://online-kch.seeksolution.in/pages/services'));
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -23,6 +25,7 @@ class _ServicesState extends State<Services> {
           ),
         ),
       ),
+      body: WebViewWidget(controller: controller),
     );
   }
 }
