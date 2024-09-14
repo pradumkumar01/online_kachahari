@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
+import 'package:flutter_online_kachehari/screens/ChatList.dart';
+import 'package:flutter_online_kachehari/screens/ChattingScreen.dart';
 import 'package:flutter_online_kachehari/screens/ForgotScreen.dart';
 import 'package:flutter_online_kachehari/screens/Home.dart';
 import 'package:flutter_online_kachehari/screens/SignUpScreen.dart';
@@ -245,7 +247,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(builder: (context) {
-                                      return  SignupScreen();
+                                      return  ChatList();
                                     }));
                                   },
                                   child: const Center(
