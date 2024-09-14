@@ -84,6 +84,11 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
               fontWeight: FontWeight.w700,
             )),
+        leading: Builder(builder: (context){
+            return IconButton(onPressed: (){
+              Scaffold.of(context).openDrawer();
+            }, icon: Icon(Icons.menu, color: Colors.white,));
+        }),
         actions: [
           IconButton(
             icon: Icon(
