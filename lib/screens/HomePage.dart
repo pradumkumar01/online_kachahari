@@ -2,9 +2,12 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/components/update_profile/edit.dart';
 import 'package:flutter_online_kachehari/screens/CustomerSupport.dart';
+import 'package:flutter_online_kachehari/screens/Feeds.dart';
+import 'package:flutter_online_kachehari/screens/LiveWakeels.dart';
 import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
 import 'package:flutter_online_kachehari/screens/Notification.dart';
 import 'package:flutter_online_kachehari/screens/Policy.dart';
+import 'package:flutter_online_kachehari/screens/ProfileScreen.dart';
 import 'package:flutter_online_kachehari/screens/Services.dart';
 import 'package:flutter_online_kachehari/screens/Settings.dart';
 import 'package:flutter_online_kachehari/screens/TermsConditions.dart';
@@ -18,6 +21,60 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+
+  //fake notification
+  final List<Map<String, String>> notifications = [
+    {
+      'title': 'App Update',
+      'subtitle': 'Version 2.0 is available for download',
+      'date': '22-01-2021'
+    },
+    {
+      'title': 'Event Reminder',
+      'subtitle': 'Meeting with HR at 10 AM',
+      'date': '21-01-2021'
+    },
+    {
+      'title': 'Security Alert',
+      'subtitle': 'Unusual login detected in your account',
+      'date': '20-01-2021'
+    },
+    {
+      'title': 'Payment Received',
+      'subtitle': 'Your payment of INR 500 has been processed',
+      'date': '19-01-2021'
+    },
+    {
+      'title': 'Promotion',
+      'subtitle': 'Congratulations! You have been promoted to Senior Manager',
+      'date': '18-01-2021'
+    },
+    {
+      'title': 'Appointment Scheduled',
+      'subtitle': 'Your dentist appointment is confirmed for 25-01-2021',
+      'date': '17-01-2021'
+    },
+    {
+      'title': 'New Connection',
+      'subtitle': 'You have a new connection request from Sarah',
+      'date': '16-01-2021'
+    },
+    {
+      'title': 'System Maintenance',
+      'subtitle': 'Scheduled system maintenance on 26-01-2021',
+      'date': '15-01-2021'
+    },
+    {
+      'title': 'Password Change',
+      'subtitle': 'Your password was successfully changed',
+      'date': '14-01-2021'
+    },
+    {
+      'title': 'Username Change',
+      'subtitle': 'Your username was successfully changed',
+      'date': '13-02-2022'
+    },
+  ];
 
   // Fake data for Drawer menu items
   final List<Map<String, dynamic>> drawerItems = [
@@ -81,28 +138,88 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple, // Matching app bar color
-        title: Text('Online Kachehari',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-            )),
-        leading: Builder(builder: (context){
-            return IconButton(onPressed: (){
-              Scaffold.of(context).openDrawer();
-            }, icon: Icon(Icons.menu, color: Colors.white,));
+        title: Stack(
+          children: [
+            Text('Online Kachehari',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                )),
+          ],
+        ),
+        leading: Builder(builder: (context) {
+          return IconButton(
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              icon: Icon(
+                Icons.menu,
+                color: Colors.white,
+              ));
         }),
         actions: [
-          IconButton(
-            icon: Icon(
-              Icons.notifications,
-              color: Colors.white,
-            ), // Changed to notification icon
-            onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => NotificationPage()));
-              // Add notification functionality here
-            },
+          Stack(
+            children: [
+              IconButton(
+                icon: Icon(
+                  Icons.notifications,
+                  color: Colors.white,
+                  size: 30,
+                ), // Changed to notification icon
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => NotificationPage()));
+                  // Add notification functionality here
+                },
+              ),
+              Positioned(
+                child: Container(
+                  height: 20,
+                  width: 20,
+                  margin: EdgeInsets.fromLTRB(7, 8, 20, 20),
+                  padding: EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  constraints: BoxConstraints(
+                    minWidth: 5,
+                    minHeight: 5,
+                  ),
+                  child: Text(
+                    notifications.length.toString(), // Dynamic count
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              // Positioned(
+              //   child: Container(
+              //     margin: EdgeInsets.fromLTRB(0, 5, 20, 20),
+              //     padding: EdgeInsets.all(2),
+              //     decoration: BoxDecoration(
+              //       color: Colors.red,
+              //       borderRadius: BorderRadius.circular(20),
+              //     ),
+              //     constraints: BoxConstraints(
+              //       minWidth: 5,
+              //       minHeight: 5,
+              //     ),
+              //     child: Text(
+              //       notifications.length.toString(), // Dynamic count
+              //       style: TextStyle(
+              //         color: Colors.white,
+              //         fontSize: 12,
+              //       ),
+              //       textAlign: TextAlign.center,
+              //     ),
+              //   ),
+              // ),
+            ],
           ),
         ],
       ),
@@ -144,8 +261,8 @@ class _HomePageState extends State<HomePage> {
                 title: Text(item['title']),
                 onTap: () {
                   if (item['title'] == 'Profile') {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Edit()));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => Edit()));
                   } else if (item['title'] == 'Blog') {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => TrendingBlogs()));
@@ -174,13 +291,12 @@ class _HomePageState extends State<HomePage> {
                       );
                     }));
                   } else if (item['title'] == 'Settings') {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => SettingsPage()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => SettingsPage()));
                   } else if (item['title'] == 'Privacy Policies') {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => Policy()));
-                  }
-                  else if (item['title'] == 'Payments') {
+                  } else if (item['title'] == 'Payments') {
                     // Add navigation to payments page
                   } else if (item['title'] == 'Services') {
                     Navigator.of(context).push(
@@ -203,7 +319,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -262,7 +378,9 @@ class _HomePageState extends State<HomePage> {
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: trendingItems.length,
-                  separatorBuilder: (context, index) => SizedBox(width: 10),
+                  separatorBuilder: (context, index) {
+                    return Padding(padding: EdgeInsets.only(right: 0));
+                  },
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
@@ -326,8 +444,8 @@ class _HomePageState extends State<HomePage> {
                 height: 161,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemCount: trendingItems.length,
-                  separatorBuilder: (context, index) => SizedBox(width: 10),
+                  itemCount: liveAdvocates.length,
+                  separatorBuilder: (context, index) => SizedBox(width: 0),
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
@@ -342,15 +460,15 @@ class _HomePageState extends State<HomePage> {
                                   child: CircleAvatar(
                                     radius: 40,
                                     backgroundColor: Colors.deepPurple[100],
-                                    child: Icon(trendingItems[index]['icon'],
+                                    child: Icon(liveAdvocates[index]['icon'],
                                         size: 30, color: Colors.deepPurple),
                                   ),
                                 ),
                                 SizedBox(height: 5),
-                                Text(
-                                  trendingItems[index]['title'],
-                                  style: TextStyle(fontSize: 14),
-                                ),
+                                // Text(
+                                //   liveAdvocates[index]['title'],
+                                //   style: TextStyle(fontSize: 14),
+                                // ),
                               ],
                             ),
                           ],
@@ -406,7 +524,8 @@ class _HomePageState extends State<HomePage> {
                   Spacer(),
                   TextButton(
                     onPressed: () {
-                      // Add navigation to live advocates page
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Livewakeels()));
                     },
                     child: Text('View All'),
                   ),
@@ -554,34 +673,65 @@ class _HomePageState extends State<HomePage> {
         // buttonBackgroundColor: const Color.fromARGB(255, 14, 202, 219),
         color: Colors.deepPurple,
         animationDuration: const Duration(milliseconds: 300),
-        items: const <Widget>[
-          Icon(
-            Icons.home,
-            size: 26,
-            color: Colors.white,
+        animationCurve: Curves.easeInOut,
+        items: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => HomePage()));
+            },
+            icon: const Icon(
+              Icons.home,
+              size: 26,
+              color: Colors.white,
+            ),
           ),
-          Icon(
-            Icons.message,
-            size: 26,
-            color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              // Navigate to FeedPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FeedsPage()),
+              );
+            },
+            child: Icon(
+              Icons.feed,
+              size: 26,
+              color: Colors.white,
+            ),
           ),
-          Icon(
-            Icons.search,
-            size: 26,
-            color: Colors.white,
+          IconButton(
+            onPressed: () {
+              // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>));
+            },
+            icon: const Icon(
+              Icons.search,
+              size: 26,
+              color: Colors.white,
+            ),
           ),
-          Icon(
-            Icons.notifications,
-            size: 26,
-            color: Colors.white,
-
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => NotificationPage()));
+            },
+            icon: const Icon(
+              Icons.notifications,
+              size: 26,
+              color: Colors.white,
+            ),
           ),
-          Icon(
-            Icons.person,
-            size: 26,
-            color: Colors.white,
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()));
+            },
+            icon: const Icon(
+              Icons.person,
+              size: 26,
+              color: Colors.white,
+            ),
           ),
-
         ],
       ),
     );
