@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/screens/HomePage.dart';
-
+import 'package:flutter_online_kachehari/screens/SignUpScreen.dart';
 import 'package:flutter_online_kachehari/screens/SplashScreen.dart';
 
 void main() {
@@ -18,8 +18,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      home: HomePage(),
+      home: Splashscreen(),
     );
   }
 }
