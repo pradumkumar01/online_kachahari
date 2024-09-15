@@ -13,10 +13,21 @@ class Login_Screen extends StatefulWidget {
 }
 
 class _Login_ScreenState extends State<Login_Screen> {
-  final _TextFeildController_for_email = TextEditingController();
+
+  final _TextFeildController_for_username = TextEditingController();
   final _TextFeildController_for_password = TextEditingController();
-  var _result_Login = '';
-  bool _showPassword = false;
+  late String _result_Login;
+  late bool _showPassword;
+
+  @override
+  void initState() {
+    super.initState();
+    _TextFeildController_for_username.text = "";
+    _TextFeildController_for_password.text = "";
+    _showPassword = false;
+    _result_Login = "";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,7 +125,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                           child: Container(
                             width: 270,
                             child: TextField(
-                              controller: _TextFeildController_for_email,
+                              controller: _TextFeildController_for_username,
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(Icons.email),
                                 filled: true,
@@ -289,42 +300,28 @@ class _Login_ScreenState extends State<Login_Screen> {
   }
 
   void login_result() {
-    String email = _TextFeildController_for_email.text;
+
+    String username = _TextFeildController_for_username.text;
     String password = _TextFeildController_for_password.text;
 
-    // logic for verify
-    if (password == '123456') {
-      if (email == 'admin@gmail.com') {
-        setState(() {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return HomePage();
-          }));
-        });
-      }
-    }
-    if (password != '123456' &&
-        password != '' &&
-        email != 'admin@gmail.com' &&
-        email != '') {
-      setState(() {
-        _result_Login = 'Logging Failed , Please enter password correctly';
-        showAlert(context, _result_Login);
-      });
+    //validation for username
+    if(username.trim() == ""){
+      showAlert(context,"Username is Required");
+      return;
     }
 
-// logic for null
-    // another logic
-
-    if (password == '') {
-      setState(() {
-        _result_Login = 'Enter required fields ***password***';
-        showAlert(context, _result_Login);
-      });
-    } else if (email == '') {
-      setState(() {
-        _result_Login = 'Enter required fields ***E-mail***';
-        showAlert(context, _result_Login);
-      });
+    //validation for password
+    if(password.trim() == ""){
+      showAlert(context,"Password is Required");
+      return;
     }
+
+    if(username.trim()!="" && password.trim()!=""){
+
+
+      return;
+     }
+
+
   }
 }
