@@ -42,25 +42,7 @@ class _SignupScreenState extends State<SignupScreen> {
       _controllerFor_second_password.text="";
       _selectedGender = "Male";
     }
-  TextEditingController _genderController = new TextEditingController();
-  late String _selectedGender;
 
-  void _handleGenderChange(String? value) {
-    setState(() {
-      _selectedGender = value ?? 'Male'; // Update state
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _controllerFor_name.text = "";
-    _controllerFor_email.text = "";
-    _controllerFor_mobile.text = "";
-    _controllerFor_password.text = "";
-    _controllerFor_second_password.text = "";
-    _selectedGender = "Male";
-  }
 
   String _signUp_res = '';
 
@@ -130,7 +112,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             width: 300,
                             child: TextField(
                               controller: _controllerFor_name,
-                              decoration: InputDecoration(
+                              decoration: InputDecoration( 
                                 prefixIcon: const Icon(Icons.person),
                                 filled: true,
                                 fillColor: Theme.of(context)
