@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/components/update_profile/edit.dart';
 import 'package:flutter_online_kachehari/screens/CustomerSupport.dart';
+import 'package:flutter_online_kachehari/screens/Feeds.dart';
 import 'package:flutter_online_kachehari/screens/LiveWakeels.dart';
 import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
 import 'package:flutter_online_kachehari/screens/Notification.dart';
@@ -685,12 +686,16 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
           ),
-          IconButton(
-            onPressed: () {
-              // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>));
+          GestureDetector(
+            onTap: () {
+              // Navigate to FeedPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FeedsPage()),
+              );
             },
-            icon: const Icon(
-              Icons.message,
+            child: Icon(
+              Icons.feed,
               size: 26,
               color: Colors.white,
             ),
