@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/components/toaster/toast.dart';
@@ -67,28 +68,19 @@ class _SignupScreenState extends State<SignupScreen> {
                   children: [
                     Container(
                       height: 150,
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
                       ),
                       alignment: Alignment.center,
                       child: Image.asset(
-                        'assets/images/logo.png', color: Colors.black,),
+                        'assets/images/logo.png',
+                        color: Colors.black,
+                      ),
                     ),
                   ],
                 ),
                 Container(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.99,
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.45),
                     borderRadius: const BorderRadius.only(
@@ -113,7 +105,8 @@ class _SignupScreenState extends State<SignupScreen> {
                     // name code is here
                     Padding(
                       padding: const EdgeInsets.all(11.0),
-                      child: Card(elevation: 4,
+                      child: Card(
+                        elevation: 4,
                         child: Container(
                           width: 300,
                           child: TextField(
@@ -121,8 +114,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.person),
                               filled: true,
-                              fillColor: Theme
-                                  .of(context)
+                              fillColor: Theme.of(context)
                                   .primaryColor
                                   .withOpacity(0.1),
                               prefixIconColor: Colors.black,
@@ -155,7 +147,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
                     Padding(
                       padding: const EdgeInsets.all(11.0),
-                      child: Card(elevation: 4,
+                      child: Card(
+                        elevation: 4,
                         child: Container(
                           width: 300,
                           child: TextField(
@@ -163,8 +156,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.email),
                               filled: true,
-                              fillColor: Theme
-                                  .of(context)
+                              fillColor: Theme.of(context)
                                   .primaryColor
                                   .withOpacity(0.1),
                               prefixIconColor: Colors.black,
@@ -197,7 +189,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
                     Padding(
                       padding: const EdgeInsets.all(11.0),
-                      child: Card(elevation: 4,
+                      child: Card(
+                        elevation: 4,
                         child: Container(
                           width: 300,
                           child: TextField(
@@ -205,8 +198,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.call),
                               filled: true,
-                              fillColor: Theme
-                                  .of(context)
+                              fillColor: Theme.of(context)
                                   .primaryColor
                                   .withOpacity(0.1),
                               prefixIconColor: Colors.black,
@@ -238,7 +230,8 @@ class _SignupScreenState extends State<SignupScreen> {
                     // password code is here
                     Padding(
                       padding: const EdgeInsets.all(11.0),
-                      child: Card(elevation: 4,
+                      child: Card(
+                        elevation: 4,
                         child: Container(
                           width: 300,
                           child: TextField(
@@ -247,8 +240,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.password_sharp),
                               filled: true,
-                              fillColor: Theme
-                                  .of(context)
+                              fillColor: Theme.of(context)
                                   .primaryColor
                                   .withOpacity(0.1),
                               prefixIconColor: Colors.black,
@@ -281,7 +273,8 @@ class _SignupScreenState extends State<SignupScreen> {
                     //  confirm password code is here
                     Padding(
                       padding: const EdgeInsets.all(11.0),
-                      child: Card(elevation: 4,
+                      child: Card(
+                        elevation: 4,
                         child: Container(
                           width: 300,
                           child: TextField(
@@ -290,8 +283,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             decoration: InputDecoration(
                               prefixIcon: const Icon(Icons.password_rounded),
                               filled: true,
-                              fillColor: Theme
-                                  .of(context)
+                              fillColor: Theme.of(context)
                                   .primaryColor
                                   .withOpacity(0.1),
                               prefixIconColor: Colors.black,
@@ -368,15 +360,19 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ]),
                     SizedBox(height: 10),
-                    ElevatedButton(onPressed: () {
-                      sign_up_result_page();
-                    },
+                    ElevatedButton(
+                      onPressed: () {
+                        sign_up_result_page();
+                      },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlue, elevation: 2
+                          backgroundColor: Colors.lightBlue, elevation: 2),
+                      child: const Text(
+                        "Sign Up",
+                        style: TextStyle(
+                            fontFamily: "serif",
+                            fontSize: 21,
+                            color: Colors.white),
                       ),
-                      child: const Text("Sign Up", style: TextStyle(
-                          fontFamily: "serif", fontSize: 21, color: Colors.white
-                      ),),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -402,8 +398,8 @@ class _SignupScreenState extends State<SignupScreen> {
                                 onTap: () {
                                   Navigator.of(context).push(
                                       MaterialPageRoute(builder: (context) {
-                                        return const Login_Screen();
-                                      }));
+                                    return const Login_Screen();
+                                  }));
                                 },
                                 child: const Center(
                                   child: Text(
@@ -429,7 +425,7 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  void sign_up_result_page() async{
+  void sign_up_result_page() async {
     String name = _controllerFor_name.text;
     String email = _controllerFor_email.text;
     String password = _controllerFor_password.text;
@@ -443,8 +439,7 @@ class _SignupScreenState extends State<SignupScreen> {
     }
     //Validation Email
     if (email.trim() == "") {
-
-      showAlert(context,"Email is required");
+      showAlert(context, "Email is required");
       return;
     }
 
@@ -466,7 +461,7 @@ class _SignupScreenState extends State<SignupScreen> {
       return;
     }
 
-    if(password == cnf_password){
+    if (password == cnf_password) {
       //Ready to Submit
       final Dio dio = Dio();
       Response response;
@@ -482,7 +477,8 @@ class _SignupScreenState extends State<SignupScreen> {
       final formData = FormData.fromMap(userdata);
 
       try {
-        response = await dio.post(Urls().getApiUrl("create_users"), data: formData);
+        response =
+            await dio.post(Urls().getApiUrl("create_users"), data: formData);
 
         // Print response details
         print(response.data.toString());
@@ -499,23 +495,25 @@ class _SignupScreenState extends State<SignupScreen> {
         if (code == 201) {
           // showAlert(context, "Register Success");
           showToaster("Register Success");
-          Timer(const Duration(seconds: 3),(){
-            Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
-              return Login_Screen();
-            },));
+          Timer(const Duration(seconds: 3), () {
+            Navigator.of(context).push(new MaterialPageRoute(
+              builder: (context) {
+                return Login_Screen();
+              },
+            ));
           });
         } else if (code == 200) {
           showAlert(context, "User Already Exist, Please Login ");
         } else {
           showAlert(context, "Unexpected response code: $code");
         }
-
       } on DioException catch (e) {
         // Handle Dio specific exceptions
         if (e.response != null) {
           print('DioException response: ${e.response}');
 
-          showAlert(context, "Error: ${e.response?.statusCode} - ${e.response?.statusMessage}");
+          showAlert(context,
+              "Error: ${e.response?.statusCode} - ${e.response?.statusMessage}");
         } else {
           // If there is no response object in the exception
           print('DioException error: ${e.message}');
@@ -526,11 +524,9 @@ class _SignupScreenState extends State<SignupScreen> {
         print('General exception: $e');
         showAlert(context, "Unexpected Error: $e");
       }
-    }else{
+    } else {
       showAlert(context, "Password and Confirm Password Does not Match");
       return;
     }
-
   }
-
 }

@@ -66,7 +66,45 @@ class _NotificationPageState extends State<NotificationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notifications",style: TextStyle(color: Colors.white)),
+        title: Stack(
+          children: [
+            Text("Notifications", style: TextStyle(color: Colors.white)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                    child: Icon(
+                  Icons.notification_add,
+                  color: Colors.white,
+                  size: 30,
+                )),
+              ],
+            ),
+            Positioned(
+              right: 0,
+              top: 0,
+              child: Container(
+                padding: EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                constraints: BoxConstraints(
+                  minWidth: 20,
+                  minHeight: 20,
+                ),
+                child: Text(
+                  notifications.length.toString(), // Dynamic count
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ],
+        ),
         backgroundColor: Colors.deepPurple,
       ),
       body: ListView.builder(
@@ -74,11 +112,13 @@ class _NotificationPageState extends State<NotificationPage> {
         itemBuilder: (context, index) {
           return ListTile(
             leading: Icon(Icons.notifications_active, color: Colors.deepPurple),
-            title: Text(notifications[index]['title']!), // Dynamic title from map
+            title:
+                Text(notifications[index]['title']!), // Dynamic title from map
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(notifications[index]['subtitle']!), // Dynamic subtitle from map
+                Text(notifications[index]
+                    ['subtitle']!), // Dynamic subtitle from map
                 SizedBox(height: 4), // Small space between subtitle and date
                 Text(
                   notifications[index]['date']!,
@@ -86,7 +126,8 @@ class _NotificationPageState extends State<NotificationPage> {
                 ), // Dynamic date from map
               ],
             ),
-            trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+            trailing:
+                Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
             onTap: () {
               // Action to perform when tapped
               showDialog(
