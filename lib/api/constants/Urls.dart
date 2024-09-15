@@ -1,5 +1,5 @@
 class Urls{
- final String API_BASE_URL = "https://online-kch.seeksolution.in/api&quot";
+ final String API_BASE_URL = "https://online-kch.seeksolution.in/api";
 
  final Map<String,String> ENDPOINTS = {
   "get_user":"/get/users/",

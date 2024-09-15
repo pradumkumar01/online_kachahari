@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
 import 'package:flutter_online_kachehari/screens/alert.dart';
+
+import '../api/constants/Urls.dart';
+import '../components/update_profile/editForm.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -15,7 +20,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final _controllerFor_mobile = TextEditingController();
   final _controllerFor_password = TextEditingController();
   final _controllerFor_second_password = TextEditingController();
-  String _signUp_res = '';
+  TextEditingController _genderController = new TextEditingController();
   late String _selectedGender;
 
     void _handleGenderChange(String? value){
@@ -69,7 +74,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width *1.9,
                     height: MediaQuery.of(context).size.height * 0.99,
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.45),
@@ -99,6 +104,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: Container(
                             width: 300,
                             child: TextField(
+                              controller: _controllerFor_name,
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(Icons.person),
                                 filled: true,
@@ -139,6 +145,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: Container(
                             width: 300,
                             child: TextField(
+                              controller: _controllerFor_email,
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(Icons.email),
                                 filled: true,
@@ -179,6 +186,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: Container(
                             width: 300,
                             child: TextField(
+                              controller: _controllerFor_mobile,
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(Icons.call),
                                 filled: true,
@@ -294,11 +302,48 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ),
                       ),
+                      Container(
+                        width: 300,
+                        height: 50,
+                        child: editForm("", Icons.male, TextInputType.text, _genderController,
+                            true, 'Male', 'Male', _selectedGender, _handleGenderChange),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 50,
+                        child: editForm(
+                            "",
+                            Icons.male,
+                            TextInputType.text,
+                            _genderController,
+                            true,
+                            'Female',
+                            'Female',
+                            _selectedGender,
+                            _handleGenderChange),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        width: 300,
+                        height: 50,
+                        child: editForm(
+                            "",
+                            Icons.male,
+                            TextInputType.text,
+                            _genderController,
+                            true,
+                            'Other',
+                            'Other',
+                            _selectedGender,
+                            _handleGenderChange),
+                      ),
+                      const SizedBox(height: 20),
                      ElevatedButton(onPressed: (){sign_up_result_page();},
                       style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.lightBlue,elevation:2
                       ),
-                      child:const Text("Login ",style: TextStyle(fontFamily: "serif",fontSize: 21,color: Colors.white
+                      child:const Text("Sign Up ",style: TextStyle(fontFamily: "serif",fontSize: 21,color: Colors.white
                       ),),
                       ),
                       Column(
@@ -353,33 +398,68 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-  void sign_up_result_page() {
-    String passwordFirst = _controllerFor_password.text;
-    String passwordSecond = _controllerFor_second_password.text;
-    if (passwordFirst == '123456') {
-      if (passwordSecond == '123456') {
-        setState(() {
-          _signUp_res = ' Sign Up Successfully ';
-          showAlert(context, _signUp_res);
-        });
+  void sign_up_result_page() async{
+    String name = _controllerFor_name.text;
+    String email = _controllerFor_email.text;
+    String password = _controllerFor_password.text;
+    String mobile = _controllerFor_mobile.text;
+    String cnf_password = _controllerFor_second_password.text;
+    String gender = _selectedGender;
+    //Validation name
+    if (name.trim() == "") {
+      showAlert(context, "name is required");
+      return;
+    }
+    //Validation Email
+    if (email.trim() == "") {
+
+      showAlert(context,"Email is required");
+      return;
+    }
+
+    //Validation mobile
+    if (mobile.trim() == "") {
+      showAlert(context, "Mobile is required");
+      return;
+    }
+
+    //Validation password
+    if (password.trim() == "") {
+      showAlert(context, "Password is required");
+      return;
+    }
+
+    //Validation cnf_password
+    if (cnf_password.trim() == "") {
+      showAlert(context, "Confirm Password is required");
+      return;
+    }
+
+    if(password == cnf_password){
+      //Ready to Submit
+      final Dio dio = Dio();
+      Response response;
+      var userdata = {
+        "name":name,
+        "email" : email,
+        "password" : password,
+        "mobile" : mobile,
+        "gender" : gender,
+      };
+      final formData = FormData.fromMap(userdata);
+      response = await dio.post(Urls().getApiUrl("create_users"), data: formData);
+      print(response.data.toString());
+      // JSON response
+      if(response.statusCode == 200) {
+        Map<String, dynamic> userResponse = json.decode(response.toString());
+        int code = userResponse["code"]?? "";
+        String message = userResponse["message"]?? "";
+        showAlert(context, message);
       }
+    }else{
+      showAlert(context, "Password and Confirm Password Does not Match");
+      return;
     }
-    // for empty value
-    else if (passwordFirst == '') {
-      setState(() {
-        _signUp_res = ' Please Enter required fields';
-        showAlert(context, _signUp_res);
-      });
-    } else if (passwordSecond == '') {
-      setState(() {
-        _signUp_res = ' Please Enter required fields';
-        showAlert(context, _signUp_res);
-      });
-    } else {
-      setState(() {
-        _signUp_res = ' Failed to Sign up , Enter password correctly';
-        showAlert(context, _signUp_res);
-      });
-    }
-  }
+
+  } //end of method
 }
