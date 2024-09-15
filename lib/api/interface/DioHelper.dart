@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
 
 class DioHelper {
   final Dio _dio;
@@ -30,7 +32,7 @@ class DioHelper {
 
   Future<Response?> post(
       String url,
-      dynamic data, {
+      dynamic data,{
         Map<String, dynamic>? headers,
       }) async {
     try {
@@ -169,5 +171,13 @@ class DioHelper {
         message: e.message,
       );
     }
+  }
+
+  Map<String,dynamic>? responseDecoder(dynamic response){
+    Map<String,dynamic> jsonResponse = json.decode(response.toString());
+    if(kDebugMode){
+      print("Json Data : ${jsonResponse.toString()}");
+    }
+    return jsonResponse;
   }
 }

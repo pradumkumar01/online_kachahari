@@ -4,7 +4,9 @@ class Urls{
   final Map<String,String> ENDPOINTS = {
     "get_user":"/get/users/",
     "create_users" : "/create/users",
-    "user_login" :"/auth/user/login"
+    "user_login" :"/auth/user/login",
+    "about_page" : "../pages/about",
+    "contact_page" : "../pages/contact",
   };
 
   String getApiUrl(String keyname){

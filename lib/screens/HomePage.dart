@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_online_kachehari/api/constants/Urls.dart';
 import 'package:flutter_online_kachehari/components/update_profile/edit.dart';
 import 'package:flutter_online_kachehari/screens/CustomerSupport.dart';
 import 'package:flutter_online_kachehari/screens/Feeds.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_online_kachehari/screens/Services.dart';
 import 'package:flutter_online_kachehari/screens/Settings.dart';
 import 'package:flutter_online_kachehari/screens/TermsConditions.dart';
 import 'package:flutter_online_kachehari/screens/TrendingBlogs.dart';
+import 'package:flutter_online_kachehari/screens/web_interfaces/CommonWeblayout.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -269,26 +271,37 @@ class _HomePageState extends State<HomePage> {
                   } else if (item['title'] == 'About Us') {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return Scaffold(
-                        appBar: AppBar(
-                          title: Text('About Us'),
-                        ),
-                        body: Center(
-                          child: Text('About Us Page'),
-                        ),
-                      );
-                    }));
+                      // return Scaffold(
+                      //   appBar: AppBar(
+                      //     title: Text('About Us'),
+                      //   ),
+                      //   body: Center(
+                      //     child: Text('About Us Page'),
+                      //   ),
+                      // );
+                      return Commonweblayout(
+                        title: "About Us",
+                        url: Urls().getApiUrl("about_page")
+                        );
+                    }
+
+                    ));
                   } else if (item['title'] == 'Contact Us') {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return Scaffold(
-                        appBar: AppBar(
-                          title: Text('Contact Us'),
-                        ),
-                        body: Center(
-                          child: Text('Contact Us Page'),
-                        ),
+                      // return Scaffold(
+                      //   appBar: AppBar(
+                      //     title: Text('Contact Us'),
+                      //   ),
+                      //   body: Center(
+                      //     child: Text('Contact Us Page'),
+                      //   ),
+                      // );
+                      return Commonweblayout(
+                          title: "Contact Us",
+                          url: Urls().getApiUrl("contact_page")
                       );
+
                     }));
                   } else if (item['title'] == 'Settings') {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -492,22 +505,22 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 20),
 
               // Vakil Logo Section
-              Text('Vakil Logo',
+              Text('Legal Consulation',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
               Center(
                 child: Card(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   elevation: 4,
                   child: Container(
                     height: 250,
-                    width: 250,
+                    // width: 350,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/vakil_logo.png'),
-                        fit: BoxFit.cover,
+                        image: AssetImage("assets/images/legals_banner.jpg"),
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),

@@ -1,5 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
+import 'dart:async';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_online_kachehari/api/constants/Urls.dart';
+import 'package:flutter_online_kachehari/api/interface/DioHelper.dart';
+import 'package:flutter_online_kachehari/components/toaster/toast.dart';
 import 'package:flutter_online_kachehari/screens/ForgotScreen.dart';
 import 'package:flutter_online_kachehari/screens/HomePage.dart';
 import 'package:flutter_online_kachehari/screens/SignUpScreen.dart';
@@ -299,7 +305,7 @@ class _Login_ScreenState extends State<Login_Screen> {
     );
   }
 
-  void login_result() {
+  void login_result() async{
 
     String username = _TextFeildController_for_username.text;
     String password = _TextFeildController_for_password.text;
@@ -317,9 +323,49 @@ class _Login_ScreenState extends State<Login_Screen> {
     }
 
     if(username.trim()!="" && password.trim()!=""){
+      final _dio = new Dio();
+      DioHelper dioHelper = new DioHelper(_dio);
 
+      var userdata = {
+        "username": username,
+        "password": password,
+      };
 
-      return;
+      try {
+        final formData = FormData.fromMap(userdata);
+
+        // Add await here
+        final loginResponse = await dioHelper.post(Urls().getApiUrl("user_login"), formData);
+
+        print("Response ==> ${loginResponse.toString()}");
+
+        // Await ensures loginResponse is complete before decoding
+        dynamic response = dioHelper.responseDecoder(loginResponse);  // Extract the data part
+
+        int code = response["code"];
+        bool status = response["status"];
+        String message = response["message"];
+
+        if (status == true) {
+          showToaster(message);
+          Timer(Duration(seconds: 3), () {
+            Navigator.of(context).push(
+              new MaterialPageRoute(builder: (context) {
+                return HomePage();
+              }),
+            );
+          });
+        } else {
+          showAlert(context, "${message} Or User Does not Exist");
+        }
+
+      } on DioException catch (e) {
+        print("DioException Exception: ${e.response.toString()}");
+        showToaster("DioException Occurred: ${e.response.toString()}");
+      } catch (err) {
+        print("Uncaught Exception: ${err.toString()}");
+        showToaster("Exception Occurred: ${err.toString()}");
+      }
      }
 
 
