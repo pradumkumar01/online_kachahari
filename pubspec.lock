@@ -84,7 +84,10 @@ packages:
     source: sdk
     version: "0.0.0"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   flutter_web_plugins:
     dependency: transitive
     description: flutter
