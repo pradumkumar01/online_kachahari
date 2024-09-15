@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/components/update_profile/edit.dart';
 import 'package:flutter_online_kachehari/screens/CustomerSupport.dart';
+import 'package:flutter_online_kachehari/screens/Feeds.dart';
 import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
 import 'package:flutter_online_kachehari/screens/Notification.dart';
 import 'package:flutter_online_kachehari/screens/Policy.dart';
@@ -562,29 +563,38 @@ class _HomePageState extends State<HomePage> {
         // buttonBackgroundColor: const Color.fromARGB(255, 14, 202, 219),
         color: Colors.deepPurple,
         animationDuration: const Duration(milliseconds: 300),
-        items: const <Widget>[
-          Icon(
+        items: <Widget>[
+          const Icon(
             Icons.home,
             size: 26,
             color: Colors.white,
           ),
-          Icon(
-            Icons.message,
-            size: 26,
-            color: Colors.white,
+          GestureDetector(
+            onTap: () {
+              // Navigate to FeedPage
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FeedsPage()),
+              );
+            },
+            child: Icon(
+              Icons.feed,
+              size: 26,
+              color: Colors.white,
+            ),
           ),
-          Icon(
+          const Icon(
             Icons.search,
             size: 26,
             color: Colors.white,
           ),
-          Icon(
+          const Icon(
             Icons.notifications,
             size: 26,
             color: Colors.white,
 
           ),
-          Icon(
+          const Icon(
             Icons.person,
             size: 26,
             color: Colors.white,
