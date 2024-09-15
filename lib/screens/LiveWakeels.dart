@@ -49,7 +49,6 @@ class _LivewakeelsState extends State<Livewakeels> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
         appBar: AppBar(
           title: const Text(
             "Live Advocates",
@@ -114,7 +113,6 @@ class _LivewakeelsState extends State<Livewakeels> {
                         style: TextStyle(fontFamily: "serif", fontSize: 16),
                       ),
                     ),
-=======
       appBar: AppBar(
         title: const Text(
           "Live Advocates",
@@ -174,7 +172,6 @@ class _LivewakeelsState extends State<Livewakeels> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => ChatScreen(),
->>>>>>> master
                   ),
                 );
               },
