@@ -7,10 +7,8 @@ import 'package:flutter_online_kachehari/screens/Login_Screen.dart';
 import 'package:flutter_online_kachehari/screens/alert.dart';
 import '../api/constants/Urls.dart';
 import '../components/update_profile/editForm.dart';
-
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
-
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
