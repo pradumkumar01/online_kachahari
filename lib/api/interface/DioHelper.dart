@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class DioHelper {
@@ -169,5 +171,13 @@ class DioHelper {
         message: e.message,
       );
     }
+  }
+
+  Map<String,dynamic>? responseDecoder(dynamic response){
+    Map<String,dynamic> jsonResponse = json.decode(response.toString());
+    if(kDebugMode){
+      print('Json Data : ${jsonResponse.toString()}');
+    }
+    return jsonResponse;
   }
 }

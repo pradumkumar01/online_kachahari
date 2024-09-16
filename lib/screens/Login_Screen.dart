@@ -1,5 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_online_kachehari/api/constants/Urls.dart';
+import 'package:flutter_online_kachehari/api/interface/DioHelper.dart';
+import 'package:flutter_online_kachehari/components/toaster/toast.dart';
 import 'package:flutter_online_kachehari/screens/ForgotScreen.dart';
 import 'package:flutter_online_kachehari/screens/HomePage.dart';
 import 'package:flutter_online_kachehari/screens/SignUpScreen.dart';
@@ -317,8 +321,31 @@ class _Login_ScreenState extends State<Login_Screen> {
     }
 
     if(username.trim()!="" && password.trim()!=""){
+        final _dio = new Dio();
+        DioHelper dioHelper = new DioHelper(_dio);
+         var userdata = {
+        "username": username,
+        "password": password,
+
+      };
+    try{
+      final formData = FormData.fromMap(userdata);
+      final loginResponse = dioHelper.post(Urls().getApiUrl("user_login"),formData);
+       print('Response ==> ${loginResponse.toString()}');
+          showToaster('Response ==> ${loginResponse.toString()}');
+
+      dynamic response = dioHelper.responseDecoder(loginResponse);
 
 
+    }
+    on DioException  catch(e){
+          print('Dioexception  exception: ${e.response.toString()}');
+          showToaster('Dio exception occurred : ${e.response.toString()}');
+    }
+    catch(error){
+          print('un_caught exception : ${error.toString()}');
+          showToaster('un_caught exception : ${error.toString()}');
+    }
       return;
      }
 
