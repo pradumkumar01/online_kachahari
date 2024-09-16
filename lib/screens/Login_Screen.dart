@@ -62,7 +62,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                     alignment: Alignment.center,
                     child: Image.asset(
                       'assets/images/logo.png',
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                   SizedBox(
@@ -72,7 +72,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                       style: TextStyle(
                         fontSize: 24,
                         fontFamily: 'cursive',
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w900,
                       ),
                       textAlign: TextAlign.center,
@@ -85,7 +85,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                       style: TextStyle(
                         fontSize: 28,
                         fontFamily: 'serif',
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w800,
                       ),
                       textAlign: TextAlign.center,
