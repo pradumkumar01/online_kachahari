@@ -5,7 +5,7 @@ import 'dart:io';
 void main() => runApp(FeedsPage());
 
 class FeedsPage extends StatefulWidget {
-  FeedsPage({super.key});
+  const FeedsPage({super.key});
 
   @override
   _FeedsPageState createState() => _FeedsPageState();
@@ -75,7 +75,8 @@ class _FeedsPageState extends State<FeedsPage> {
 
   // Function to handle back button (customize according to your need)
   void _handleBackPress() {
-    Navigator.pop(context); // You can modify this if you want to go back to a specific page.
+    Navigator.pop(
+        context); // You can modify this if you want to go back to a specific page.
   }
 
   @override
@@ -88,10 +89,14 @@ class _FeedsPageState extends State<FeedsPage> {
         length: 5,
         child: Scaffold(
           appBar: AppBar(
-            title: Text("Feeds"),
+            title: const Text(
+              "Feeds",
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: Colors.deepPurple,
             leading: IconButton(
-              icon: Icon(Icons.arrow_back), // Back arrow icon
-              onPressed: _handleBackPress,  // Define back action
+              icon: const Icon(Icons.arrow_back), // Back arrow icon
+              onPressed: _handleBackPress, // Define back action
             ),
           ),
           body: Column(
@@ -99,7 +104,7 @@ class _FeedsPageState extends State<FeedsPage> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey.shade300),
                     borderRadius: BorderRadius.circular(20),
@@ -109,21 +114,23 @@ class _FeedsPageState extends State<FeedsPage> {
                     children: [
                       Row(
                         children: [
-                          CircleAvatar(
+                          const CircleAvatar(
                             radius: 25,
-                            backgroundImage: AssetImage("assets/images/f_img.jpeg"),
+                            backgroundImage:
+                                AssetImage("assets/images/f_img.jpeg"),
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Expanded(
                             child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade200,
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               child: TextField(
                                 controller: subtitleController,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   hintText: "Write your thoughts...",
                                   border: InputBorder.none,
                                 ),
@@ -132,14 +139,14 @@ class _FeedsPageState extends State<FeedsPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           _buildPostButton(Icons.photo, "Media", Colors.blue),
                           ElevatedButton(
                             onPressed: _addNewPost,
-                            child: Text("Post"),
+                            child: const Text("Post"),
                           ),
                         ],
                       ),
@@ -165,7 +172,7 @@ class _FeedsPageState extends State<FeedsPage> {
                         child: Column(
                           children: <Widget>[
                             ListTile(
-                              leading: CircleAvatar(),
+                              leading: const CircleAvatar(),
                               title: Text(item["username"] ?? ""),
                               subtitle: Text(item["subtitle"] ?? ""),
                               trailing: PopupMenuButton<String>(
@@ -175,7 +182,7 @@ class _FeedsPageState extends State<FeedsPage> {
                                   }
                                 },
                                 itemBuilder: (context) => [
-                                  PopupMenuItem(
+                                  const PopupMenuItem(
                                     value: "Delete",
                                     child: Text("Delete"),
                                   ),
@@ -188,41 +195,45 @@ class _FeedsPageState extends State<FeedsPage> {
                                   image: DecorationImage(
                                     image: item["image"] != null
                                         ? FileImage(File(item["image"] ?? ''))
-                                        : AssetImage('assets/images/default.jpg')
-                                    as ImageProvider,
+                                        : const AssetImage(
+                                                'assets/images/default.jpg')
+                                            as ImageProvider,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                             ),
-                            SizedBox(height: 14.0),
-                            Row(
+                            const SizedBox(height: 14.0),
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Row(
                                   children: <Widget>[
                                     Icon(Icons.thumb_up, color: Colors.grey),
                                     SizedBox(width: 8),
-                                    Text("Like", style: TextStyle(color: Colors.grey)),
+                                    Text("Like",
+                                        style: TextStyle(color: Colors.grey)),
                                   ],
                                 ),
                                 Row(
                                   children: <Widget>[
                                     Icon(Icons.comment, color: Colors.grey),
                                     SizedBox(width: 8),
-                                    Text("Comments", style: TextStyle(color: Colors.grey)),
+                                    Text("Comments",
+                                        style: TextStyle(color: Colors.grey)),
                                   ],
                                 ),
                                 Row(
                                   children: <Widget>[
                                     Icon(Icons.share, color: Colors.grey),
                                     SizedBox(width: 8),
-                                    Text("Share", style: TextStyle(color: Colors.grey)),
+                                    Text("Share",
+                                        style: TextStyle(color: Colors.grey)),
                                   ],
                                 ),
                               ],
                             ),
-                            SizedBox(height: 12.0),
+                            const SizedBox(height: 12.0),
                           ],
                         ),
                       ),
@@ -243,7 +254,7 @@ class _FeedsPageState extends State<FeedsPage> {
       child: Row(
         children: [
           Icon(icon, color: color),
-          SizedBox(width: 5),
+          const SizedBox(width: 5),
           Text(
             label,
             style: TextStyle(color: Colors.grey[800], fontSize: 14),

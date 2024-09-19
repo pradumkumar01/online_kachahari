@@ -25,21 +25,21 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+        body: SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image.asset(
-            'assets/images/logo.png',color: Colors.black,
+            'assets/images/logo.png',
+            color: Colors.black,
             height: 150,
           ),
-         const SizedBox(
+          const SizedBox(
             height: 3,
           ),
-        const  Text(
+          const Text(
             'Online Kachehri',
             style: TextStyle(
                 fontSize: 16,

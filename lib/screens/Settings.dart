@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
+
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -12,29 +14,36 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings",style: TextStyle(fontFamily: "serif",fontSize: 21,fontWeight: FontWeight.bold),),
-
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                Colors.blue.withOpacity(0.9),
-                Colors.lightBlue.withOpacity(0.3),
-              ])
-          ),
+        title: const Text(
+          "Settings",
+          style: TextStyle(
+              fontFamily: "serif",
+              fontSize: 21,
+              fontWeight: FontWeight.bold,
+              color: Colors.white),
+        ),
+        backgroundColor: Colors.deepPurple,
+        // flexibleSpace: Container(
+        //   decoration: BoxDecoration(
+        //       gradient: LinearGradient(colors: [
+        //     Colors.blue.withOpacity(0.9),
+        //     Colors.lightBlue.withOpacity(0.3),
+        //   ])),
+        // ),
+      ),
+      body: SettingsScreen(),
+      bottomNavigationBar: const BottomAppBar(
+        child: Padding(
+          padding: EdgeInsets.only(left: 12.0, bottom: 12.0),
         ),
       ),
-        body: SettingsScreen(),
-        bottomNavigationBar: BottomAppBar(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 12.0, bottom: 12.0),
-          ),
-        ),
-      );
-
+    );
   }
 }
 
 class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({super.key});
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -52,7 +61,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-
             _buildSettingsCard(
               title: 'Change Password',
               content: Column(
@@ -64,61 +72,57 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   _buildTextField('Confirm New Password'),
                   const SizedBox(height: 10),
                   ElevatedButton(
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueAccent, // Change this to any color you want
+                      backgroundColor: Colors
+                          .deepPurple, // Change this to any color you want
                     ),
-                    child: Text('Save'),
+                    child: const Text(
+                      'Save',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 12.0),
-
-
+            const SizedBox(height: 12.0),
             _buildSettingsCard(
               title: 'Change Language',
               content: DropdownButtonFormField<String>(
-                items: ['English', 'Hindi']
-                    .map((String language) {
+                items: ['English', 'Hindi'].map((String language) {
                   return DropdownMenuItem<String>(
                     value: language,
                     child: Text(language),
                   );
                 }).toList(),
-                onChanged: (String? value) {
-
-                },
-                decoration: InputDecoration(labelText: 'Select Language'),
+                onChanged: (String? value) {},
+                decoration: const InputDecoration(labelText: 'Select Language'),
               ),
             ),
-            SizedBox(height: 12.0),
-
-
+            const SizedBox(height: 12.0),
             _buildSettingsCard(
               title: 'Notification Settings',
               content: Column(
                 children: <Widget>[
                   _buildSwitch('Receive Notifications', _receiveNotifications,
-                          (bool value) {
-                        setState(() {
-                          _receiveNotifications = value;
-                        });
-                      }),
+                      (bool value) {
+                    setState(() {
+                      _receiveNotifications = value;
+                    });
+                  }),
                   _buildSwitch('Receive Offer Notifications', _receiveOffers,
-                          (bool value) {
-                        setState(() {
-                          _receiveOffers = value;
-                        });
-                      }),
-                  _buildSwitch('Receive App Update Notifications',
-                      _receiveAppUpdates, (bool value) {
-                        setState(() {
-                          _receiveAppUpdates = value;
-                        });
-                      }),
+                      (bool value) {
+                    setState(() {
+                      _receiveOffers = value;
+                    });
+                  }),
+                  _buildSwitch(
+                      'Receive App Update Notifications', _receiveAppUpdates,
+                      (bool value) {
+                    setState(() {
+                      _receiveAppUpdates = value;
+                    });
+                  }),
                 ],
               ),
             ),
@@ -139,8 +143,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            SizedBox(height: 16.0),
+            Text(title,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 16.0),
             content,
           ],
         ),
@@ -148,19 +154,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-
   Widget _buildTextField(String labelText) {
     return TextField(
       decoration: InputDecoration(
         labelText: labelText,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
     );
   }
 
-
-  Widget _buildSwitch(
-      String title, bool value, Function(bool) onChanged) {
+  Widget _buildSwitch(String title, bool value, Function(bool) onChanged) {
     return SwitchListTile(
       title: Text(title),
       value: value,

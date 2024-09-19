@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-
 Container editForm(
     String labelText,
     IconData icondata,
     TextInputType inputType,
-    TextEditingController _controller,
+    TextEditingController controller,
     bool radioEnable,
     String genderTitle,
     String value,
-    String _gender,
+    String gender,
     ValueChanged<String?> onGenderChanged) {
   return Container(
     height: 70,
@@ -18,7 +17,7 @@ Container editForm(
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, 5),
+            offset: const Offset(0, 5),
             color: Colors.blueAccent.withOpacity(.2),
             spreadRadius: 5,
             blurRadius: 10,
@@ -27,14 +26,14 @@ Container editForm(
     child: radioEnable
         ? RadioListTile(
             value: value,
-            groupValue: _gender,
+            groupValue: gender,
             onChanged: onGenderChanged,
             title: Text(genderTitle),
           )
         : Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: _controller,
+              controller: controller,
               decoration: InputDecoration(
                   icon: Icon(icondata),
                   labelText: labelText,

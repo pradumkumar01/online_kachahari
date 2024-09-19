@@ -15,6 +15,8 @@ import 'package:flutter_online_kachehari/screens/TrendingBlogs.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -138,7 +140,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple, // Matching app bar color
-        title: Stack(
+        title: const Stack(
           children: [
             Text('Online Kachehari',
                 style: TextStyle(
@@ -153,7 +155,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.menu,
                 color: Colors.white,
               ));
@@ -162,14 +164,14 @@ class _HomePageState extends State<HomePage> {
           Stack(
             children: [
               IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.notifications,
                   color: Colors.white,
                   size: 30,
                 ), // Changed to notification icon
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => NotificationPage()));
+                      builder: (context) => const NotificationPage()));
                   // Add notification functionality here
                 },
               ),
@@ -177,19 +179,19 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   height: 20,
                   width: 20,
-                  margin: EdgeInsets.fromLTRB(7, 8, 20, 20),
-                  padding: EdgeInsets.all(2),
+                  margin: const EdgeInsets.fromLTRB(7, 8, 20, 20),
+                  padding: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     minWidth: 5,
                     minHeight: 5,
                   ),
                   child: Text(
                     notifications.length.toString(), // Dynamic count
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,
                     ),
@@ -227,7 +229,7 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.deepPurple, // Matching drawer color
               ),
@@ -261,8 +263,8 @@ class _HomePageState extends State<HomePage> {
                 title: Text(item['title']),
                 onTap: () {
                   if (item['title'] == 'Profile') {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => Edit()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const Edit()));
                   } else if (item['title'] == 'Blog') {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => TrendingBlogs()));
@@ -271,9 +273,9 @@ class _HomePageState extends State<HomePage> {
                         .push(MaterialPageRoute(builder: (context) {
                       return Scaffold(
                         appBar: AppBar(
-                          title: Text('About Us'),
+                          title: const Text('About Us'),
                         ),
-                        body: Center(
+                        body: const Center(
                           child: Text('About Us Page'),
                         ),
                       );
@@ -283,9 +285,9 @@ class _HomePageState extends State<HomePage> {
                         .push(MaterialPageRoute(builder: (context) {
                       return Scaffold(
                         appBar: AppBar(
-                          title: Text('Contact Us'),
+                          title: const Text('Contact Us'),
                         ),
-                        body: Center(
+                        body: const Center(
                           child: Text('Contact Us Page'),
                         ),
                       );
@@ -294,26 +296,26 @@ class _HomePageState extends State<HomePage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => SettingsPage()));
                   } else if (item['title'] == 'Privacy Policies') {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Policy()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Policy()));
                   } else if (item['title'] == 'Payments') {
                     // Add navigation to payments page
                   } else if (item['title'] == 'Services') {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Services()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Services()));
                   } else if (item['title'] == 'Terms and Conditions') {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => TermsConditions()));
+                        builder: (context) => const TermsConditions()));
                   } else if (item['title'] == 'Help and Support') {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => Customersupport()));
                   } else if (item['title'] == 'Logout') {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Login_Screen()));
+                        builder: (context) => const Login_Screen()));
                   }
                 },
               );
-            }).toList(),
+            }),
           ],
         ),
       ),
@@ -344,7 +346,7 @@ class _HomePageState extends State<HomePage> {
                     focusNode: focusNode,
                     decoration: InputDecoration(
                       hintText: 'Search...',
-                      prefixIcon: Icon(Icons.search),
+                      prefixIcon: const Icon(Icons.search),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide: BorderSide.none,
@@ -355,31 +357,31 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Top Trending Section
               Row(
                 children: [
-                  Text('Top Legal Trends',
+                  const Text('Top Legal Trends',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Spacer(),
+                  const Spacer(),
                   TextButton(
                     onPressed: () {
                       // Add navigation to top legal trends page
                     },
-                    child: Text('View All'),
+                    child: const Text('View All'),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              Container(
+              const SizedBox(height: 10),
+              SizedBox(
                 height: 161,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: trendingItems.length,
                   separatorBuilder: (context, index) {
-                    return Padding(padding: EdgeInsets.only(right: 0));
+                    return const Padding(padding: EdgeInsets.only(right: 0));
                   },
                   itemBuilder: (context, index) {
                     return Column(
@@ -399,10 +401,10 @@ class _HomePageState extends State<HomePage> {
                                         size: 30, color: Colors.deepPurple),
                                   ),
                                 ),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 Text(
                                   trendingItems[index]['title'],
-                                  style: TextStyle(fontSize: 14),
+                                  style: const TextStyle(fontSize: 14),
                                 ),
                               ],
                             ),
@@ -414,7 +416,7 @@ class _HomePageState extends State<HomePage> {
                               onPressed: () {
                                 // Add navigation to trending item details
                               },
-                              child: Text('View Details'),
+                              child: const Text('View Details'),
                             ),
                           ],
                         )
@@ -424,28 +426,29 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Container(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 children: [
-                  Text('Top Advocates',
+                  const Text('Top Advocates',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Spacer(),
+                  const Spacer(),
                   TextButton(
                     onPressed: () {
                       // Add navigation to top advocates page
                     },
-                    child: Text('View All'),
+                    child: const Text('View All'),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              Container(
+              const SizedBox(height: 10),
+              SizedBox(
                 height: 161,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: liveAdvocates.length,
-                  separatorBuilder: (context, index) => SizedBox(width: 0),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 0),
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
@@ -464,7 +467,7 @@ class _HomePageState extends State<HomePage> {
                                         size: 30, color: Colors.deepPurple),
                                   ),
                                 ),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 // Text(
                                 //   liveAdvocates[index]['title'],
                                 //   style: TextStyle(fontSize: 14),
@@ -479,7 +482,7 @@ class _HomePageState extends State<HomePage> {
                               onPressed: () {
                                 // Add navigation to trending item details
                               },
-                              child: Text('View Details'),
+                              child: const Text('View Details'),
                             ),
                           ],
                         )
@@ -489,12 +492,12 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Container(),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Vakil Logo Section
-              Text('Vakil Logo',
+              const Text('Vakil Logo',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Center(
                 child: Card(
                   shape: RoundedRectangleBorder(
@@ -504,7 +507,7 @@ class _HomePageState extends State<HomePage> {
                   child: Container(
                     height: 250,
                     width: 250,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/images/vakil_logo.png'),
                         fit: BoxFit.cover,
@@ -513,31 +516,32 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Live Advocate Section
               Row(
                 children: [
-                  Text('Live Advocates',
+                  const Text('Live Advocates',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Spacer(),
+                  const Spacer(),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => Livewakeels()));
                     },
-                    child: Text('View All'),
+                    child: const Text('View All'),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              Container(
+              const SizedBox(height: 10),
+              SizedBox(
                 height: 130,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: liveAdvocates.length,
-                  separatorBuilder: (context, index) => SizedBox(width: 10),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 10),
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
@@ -552,26 +556,26 @@ class _HomePageState extends State<HomePage> {
                                 size: 30, color: Colors.green),
                           ),
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
                           liveAdvocates[index]['name'],
-                          style: TextStyle(fontSize: 14),
+                          style: const TextStyle(fontSize: 14),
                         ),
                       ],
                     );
                   },
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               // Other Services Section with Cards
-              Text('Other Services',
+              const Text('Other Services',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               GridView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
@@ -589,7 +593,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Icon(otherServices[index]['icon'],
                               size: 40, color: Colors.deepPurple),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(otherServices[index]['title']),
                         ],
                       ),
@@ -597,10 +601,10 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
               //add social media icons with there links
-              Row(
+              const Row(
                 children: [
                   Text('Follow Us',
                       style:
@@ -609,40 +613,40 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
 
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               Row(
                 children: [
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.facebook,
                       color: Colors.blue,
                     ),
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       FontAwesomeIcons.instagram,
                       color: Colors.pink,
                     ),
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       FontAwesomeIcons.linkedin,
                       color: Colors.blue,
                     ),
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       FontAwesomeIcons.youtube,
                       color: Colors.red,
                     ),
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       FontAwesomeIcons.twitter,
                       color: Colors.blue,
                     ),
@@ -652,7 +656,7 @@ class _HomePageState extends State<HomePage> {
               ),
 
               //add copy right text
-              Row(
+              const Row(
                 children: [
                   Text('© 2024 Online Kachehari. All Rights Reserved.',
                       style: TextStyle(
@@ -694,7 +698,7 @@ class _HomePageState extends State<HomePage> {
                 MaterialPageRoute(builder: (context) => FeedsPage()),
               );
             },
-            child: Icon(
+            child: const Icon(
               Icons.feed,
               size: 26,
               color: Colors.white,
@@ -712,8 +716,8 @@ class _HomePageState extends State<HomePage> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => NotificationPage()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const NotificationPage()));
             },
             icon: const Icon(
               Icons.notifications,
@@ -723,8 +727,10 @@ class _HomePageState extends State<HomePage> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProfileScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileScreen()));
             },
             icon: const Icon(
               Icons.person,
