@@ -12,35 +12,43 @@ class _PolicyState extends State<Policy> with SingleTickerProviderStateMixin {
   final List<Map<String, String>> policies = [
     {
       'title': 'Introduction',
-      'content': 'Online Kachehari aims to provide a digital platform for users to connect with legal experts for consultations and legal advice in a secure and convenient manner.'
+      'content':
+          'Online Kachehari aims to provide a digital platform for users to connect with legal experts for consultations and legal advice in a secure and convenient manner.'
     },
     {
       'title': 'Privacy Policy',
-      'content': 'Your privacy is of utmost importance to us. We ensure that all personal data collected through the platform is protected and not shared with third parties without consent.'
+      'content':
+          'Your privacy is of utmost importance to us. We ensure that all personal data collected through the platform is protected and not shared with third parties without consent.'
     },
     {
       'title': 'User Agreement',
-      'content': 'By using the Online Kachehari platform, users agree to abide by the terms and conditions, ensuring respectful communication and compliance with legal requirements.'
+      'content':
+          'By using the Online Kachehari platform, users agree to abide by the terms and conditions, ensuring respectful communication and compliance with legal requirements.'
     },
     {
       'title': 'Confidentiality',
-      'content': 'All consultations and interactions between users and legal experts are confidential. We use encryption to protect sensitive information exchanged on the platform.'
+      'content':
+          'All consultations and interactions between users and legal experts are confidential. We use encryption to protect sensitive information exchanged on the platform.'
     },
     {
       'title': 'Payment Policy',
-      'content': 'Payments for legal services are processed through secure gateways. Users must agree to the fee structure before engaging in any paid services.'
+      'content':
+          'Payments for legal services are processed through secure gateways. Users must agree to the fee structure before engaging in any paid services.'
     },
     {
       'title': 'Terms of Service',
-      'content': 'Online Kachehari reserves the right to modify its terms of service at any time. Users are responsible for staying updated with the latest terms and conditions.'
+      'content':
+          'Online Kachehari reserves the right to modify its terms of service at any time. Users are responsible for staying updated with the latest terms and conditions.'
     },
     {
       'title': 'Dispute Resolution',
-      'content': 'In case of disputes between users and legal experts, Online Kachehari provides a dispute resolution mechanism to ensure fair and transparent resolution.'
+      'content':
+          'In case of disputes between users and legal experts, Online Kachehari provides a dispute resolution mechanism to ensure fair and transparent resolution.'
     },
     {
       'title': 'Contact Us',
-      'content': 'For any inquiries or complaints, users can reach out to our support team via email or phone, and we will respond within 24-48 hours.'
+      'content':
+          'For any inquiries or complaints, users can reach out to our support team via email or phone, and we will respond within 24-48 hours.'
     },
   ];
 
@@ -90,18 +98,20 @@ class _PolicyState extends State<Policy> with SingleTickerProviderStateMixin {
             fontFamily: "serif",
             fontSize: 21,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.blue.withOpacity(0.9),
-                Colors.lightBlue.withOpacity(0.3),
-              ],
-            ),
-          ),
-        ),
+        backgroundColor: Colors.deepPurple,
+        // flexibleSpace: Container(
+        //   decoration: BoxDecoration(
+        //     gradient: LinearGradient(
+        //       colors: [
+        //         Colors.blue.withOpacity(0.9),
+        //         Colors.lightBlue.withOpacity(0.3),
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ),
       body: AnimatedBuilder(
         animation: _controller,
@@ -122,14 +132,15 @@ class _PolicyState extends State<Policy> with SingleTickerProviderStateMixin {
                     ),
                     margin: const EdgeInsets.symmetric(vertical: 8),
                     child: ExpansionTile(
-                      leading: const Icon(Icons.policy, color: Colors.blueAccent),
+                      leading:
+                          const Icon(Icons.policy, color: Colors.deepPurple),
                       title: Text(
                         policy['title']!,
                         style: const TextStyle(
                           fontFamily: "serif",
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blueAccent,
+                          color: Colors.deepPurple,
                         ),
                       ),
                       children: [

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/screens/AllTickets_customerSupport.dart';
 
 class Customersupport extends StatefulWidget {
+  const Customersupport({super.key});
+
   @override
   State<Customersupport> createState() => _CustomersupportState();
 }
@@ -21,8 +23,8 @@ class _CustomersupportState extends State<Customersupport>
       duration: const Duration(milliseconds: 300),
     );
 
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.1).animate(
-        CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 1.1)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -38,15 +40,19 @@ class _CustomersupportState extends State<Customersupport>
         title: const Text(
           "Support",
           style: TextStyle(
-              fontFamily: "serif", fontSize: 21, fontWeight: FontWeight.bold),
+              fontFamily: "serif",
+              fontSize: 21,
+              fontWeight: FontWeight.bold,
+              color: Colors.white),
         ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                Colors.blue.withOpacity(0.9),
-                Colors.lightBlue.withOpacity(0.3),
-              ])),
-        ),
+        backgroundColor: Colors.deepPurple,
+        // flexibleSpace: Container(
+        //   decoration: BoxDecoration(
+        //       gradient: LinearGradient(colors: [
+        //     Colors.blue.withOpacity(0.9),
+        //     Colors.lightBlue.withOpacity(0.3),
+        //   ])),
+        // ),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -66,7 +72,7 @@ class _CustomersupportState extends State<Customersupport>
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                  colors: [Colors.white, Colors.blue.shade50],
+                  colors: [Colors.white, Colors.deepPurple.shade200],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter),
               borderRadius: BorderRadius.circular(15),
@@ -75,7 +81,8 @@ class _CustomersupportState extends State<Customersupport>
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 23, right: 23, top: 11),
+                    padding:
+                        const EdgeInsets.only(left: 23, right: 23, top: 11),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -137,11 +144,11 @@ class _CustomersupportState extends State<Customersupport>
                               fillColor: Colors.white,
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.grey, width: 1),
+                                    BorderSide(color: Colors.grey, width: 1),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.blue, width: 2),
+                                    BorderSide(color: Colors.blue, width: 2),
                               ),
                               hintStyle: TextStyle(
                                 fontSize: 16,
@@ -169,11 +176,11 @@ class _CustomersupportState extends State<Customersupport>
                               fillColor: Colors.white,
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.grey, width: 1),
+                                    BorderSide(color: Colors.grey, width: 1),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.blue, width: 2),
+                                    BorderSide(color: Colors.blue, width: 2),
                               ),
                               hintStyle: TextStyle(
                                 fontSize: 16,
@@ -202,11 +209,11 @@ class _CustomersupportState extends State<Customersupport>
                               fillColor: Colors.white,
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.grey, width: 1),
+                                    BorderSide(color: Colors.grey, width: 1),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                BorderSide(color: Colors.blue, width: 2),
+                                    BorderSide(color: Colors.blue, width: 2),
                               ),
                               hintStyle: TextStyle(
                                 fontSize: 16,

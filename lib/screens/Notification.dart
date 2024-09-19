@@ -68,12 +68,12 @@ class _NotificationPageState extends State<NotificationPage> {
       appBar: AppBar(
         title: Stack(
           children: [
-            Text("Notifications", style: TextStyle(color: Colors.white)),
+            const Text("Notifications", style: TextStyle(color: Colors.white)),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                    child: Icon(
+                    child: const Icon(
                   Icons.notification_add,
                   color: Colors.white,
                   size: 30,
@@ -84,18 +84,18 @@ class _NotificationPageState extends State<NotificationPage> {
               right: 0,
               top: 0,
               child: Container(
-                padding: EdgeInsets.all(2),
+                padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   minWidth: 20,
                   minHeight: 20,
                 ),
                 child: Text(
                   notifications.length.toString(), // Dynamic count
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 12,
                   ),
@@ -111,7 +111,8 @@ class _NotificationPageState extends State<NotificationPage> {
         itemCount: notifications.length,
         itemBuilder: (context, index) {
           return ListTile(
-            leading: Icon(Icons.notifications_active, color: Colors.deepPurple),
+            leading: const Icon(Icons.notifications_active,
+                color: Colors.deepPurple),
             title:
                 Text(notifications[index]['title']!), // Dynamic title from map
             subtitle: Column(
@@ -119,15 +120,16 @@ class _NotificationPageState extends State<NotificationPage> {
               children: [
                 Text(notifications[index]
                     ['subtitle']!), // Dynamic subtitle from map
-                SizedBox(height: 4), // Small space between subtitle and date
+                const SizedBox(
+                    height: 4), // Small space between subtitle and date
                 Text(
                   notifications[index]['date']!,
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
                 ), // Dynamic date from map
               ],
             ),
-            trailing:
-                Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+            trailing: const Icon(Icons.arrow_forward_ios,
+                size: 16, color: Colors.grey),
             onTap: () {
               // Action to perform when tapped
               showDialog(
@@ -141,7 +143,7 @@ class _NotificationPageState extends State<NotificationPage> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text("Close"),
+                        child: const Text("Close"),
                       ),
                     ],
                   );

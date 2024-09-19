@@ -13,7 +13,6 @@ class Login_Screen extends StatefulWidget {
 }
 
 class _Login_ScreenState extends State<Login_Screen> {
-
   final _TextFeildController_for_username = TextEditingController();
   final _TextFeildController_for_password = TextEditingController();
   late String _result_Login;
@@ -122,7 +121,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                         child: Card(
                           elevation: 4,
                           shadowColor: Colors.grey,
-                          child: Container(
+                          child: SizedBox(
                             width: 270,
                             child: TextField(
                               controller: _TextFeildController_for_username,
@@ -164,7 +163,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                         child: Card(
                           shadowColor: Colors.grey,
                           elevation: 4,
-                          child: Container(
+                          child: SizedBox(
                             width: 270,
                             child: TextField(
                               obscureText: _showPassword ? false : true,
@@ -177,8 +176,8 @@ class _Login_ScreenState extends State<Login_Screen> {
                                     });
                                   },
                                   child: _showPassword
-                                      ? Icon(Icons.visibility)
-                                      : Icon(Icons.visibility_off),
+                                      ? const Icon(Icons.visibility)
+                                      : const Icon(Icons.visibility_off),
                                 ),
                                 prefixIcon: const Icon(Icons.person),
                                 filled: true,
@@ -271,7 +270,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(builder: (context) {
-                                      return SignupScreen();
+                                      return const SignupScreen();
                                     }));
                                   },
                                   child: const Center(
@@ -300,28 +299,23 @@ class _Login_ScreenState extends State<Login_Screen> {
   }
 
   void login_result() {
-
     String username = _TextFeildController_for_username.text;
     String password = _TextFeildController_for_password.text;
 
     //validation for username
-    if(username.trim() == ""){
-      showAlert(context,"Username is Required");
+    if (username.trim() == "") {
+      showAlert(context, "Username is Required");
       return;
     }
 
     //validation for password
-    if(password.trim() == ""){
-      showAlert(context,"Password is Required");
+    if (password.trim() == "") {
+      showAlert(context, "Password is Required");
       return;
     }
 
-    if(username.trim()!="" && password.trim()!=""){
-
-
+    if (username.trim() != "" && password.trim() != "") {
       return;
-     }
-
-
+    }
   }
 }

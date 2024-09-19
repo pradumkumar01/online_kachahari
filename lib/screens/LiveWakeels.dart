@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/screens/ChatScreen.dart';
 
 class Livewakeels extends StatefulWidget {
+  const Livewakeels({super.key});
+
   @override
   State<Livewakeels> createState() => _LivewakeelsState();
 }
@@ -66,20 +68,20 @@ class _LivewakeelsState extends State<Livewakeels> {
         itemBuilder: (context, index) {
           final item = _items[index];
           return Card(
-            margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             elevation: 5,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
             child: ListTile(
-              contentPadding: EdgeInsets.all(16.0),
+              contentPadding: const EdgeInsets.all(16.0),
               leading: CircleAvatar(
                 backgroundColor: Colors.blueAccent,
                 child: Icon(item['icon'], color: Colors.white),
               ),
               title: Text(
                 item['realName'],
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: "serif",
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

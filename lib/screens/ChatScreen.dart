@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // For formatting date and time
 
 class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
+
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }
@@ -47,27 +49,27 @@ class _ChatScreenState extends State<ChatScreen> {
         messageContent: "Hello, John",
         messageType: "receiver",
         senderId: 0,
-        timestamp: DateTime.now().subtract(Duration(minutes: 5))),
+        timestamp: DateTime.now().subtract(const Duration(minutes: 5))),
     ChatMessage(
         messageContent: "How have you been?",
         messageType: "receiver",
         senderId: 0,
-        timestamp: DateTime.now().subtract(Duration(minutes: 4))),
+        timestamp: DateTime.now().subtract(const Duration(minutes: 4))),
     ChatMessage(
         messageContent: "Hey Michael, I am doing fine dude. wbu?",
         messageType: "sender",
         senderId: 2,
-        timestamp: DateTime.now().subtract(Duration(minutes: 3))),
+        timestamp: DateTime.now().subtract(const Duration(minutes: 3))),
     ChatMessage(
         messageContent: "ehhhh, doing OK.",
         messageType: "receiver",
         senderId: 0,
-        timestamp: DateTime.now().subtract(Duration(minutes: 2))),
+        timestamp: DateTime.now().subtract(const Duration(minutes: 2))),
     ChatMessage(
         messageContent: "Is there anything wrong?",
         messageType: "sender",
         senderId: 2,
-        timestamp: DateTime.now().subtract(Duration(minutes: 1))),
+        timestamp: DateTime.now().subtract(const Duration(minutes: 1))),
   ];
 
   final TextEditingController _messageController = TextEditingController();
@@ -105,22 +107,22 @@ class _ChatScreenState extends State<ChatScreen> {
         backgroundColor: Colors.white,
         flexibleSpace: SafeArea(
           child: Container(
-            padding: EdgeInsets.only(right: 16),
+            padding: const EdgeInsets.only(right: 16),
             child: Row(
               children: <Widget>[
                 IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
                 ),
-                SizedBox(width: 2),
-                CircleAvatar(
+                const SizedBox(width: 2),
+                const CircleAvatar(
                   maxRadius: 20,
                   backgroundColor: Colors.blueAccent,
                   child: Icon(Icons.person, color: Colors.white),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,10 +131,10 @@ class _ChatScreenState extends State<ChatScreen> {
                       Text(
                         _items[2][
                             'realName'], // Assuming you are chatting with Michael Brown
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(height: 2),
+                      const SizedBox(height: 2),
                       Row(
                         children: [
                           Icon(Icons.circle,
@@ -140,7 +142,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                   ? Colors.green[700]
                                   : Colors.red[700],
                               size: 10),
-                          SizedBox(width: 5),
+                          const SizedBox(width: 5),
                           Text(
                             _items[2]['subtitle'], // Online/Offline status
                             style: TextStyle(
@@ -173,8 +175,10 @@ class _ChatScreenState extends State<ChatScreen> {
                   alignment:
                       isSender ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    margin:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 15),
                     decoration: BoxDecoration(
                       color:
                           isSender ? Colors.blueAccent : Colors.grey.shade200,
@@ -184,12 +188,12 @@ class _ChatScreenState extends State<ChatScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         if (!isSender)
-                          CircleAvatar(
+                          const CircleAvatar(
                             backgroundColor: Colors.blueAccent,
                             maxRadius: 15,
                             child: Icon(Icons.person, color: Colors.white),
                           ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
                         Column(
                           crossAxisAlignment: isSender
                               ? CrossAxisAlignment.end
@@ -201,7 +205,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                   color:
                                       isSender ? Colors.white : Colors.black87),
                             ),
-                            SizedBox(height: 5),
+                            const SizedBox(height: 5),
                             Text(
                               DateFormat('hh:mm a')
                                   .format(message.timestamp), // Display time
@@ -242,15 +246,15 @@ class _ChatScreenState extends State<ChatScreen> {
                           borderRadius: BorderRadius.circular(15),
                           color: Colors.grey[200],
                         ),
-                        child: Icon(Icons.emoji_emotions_outlined,
+                        child: const Icon(Icons.emoji_emotions_outlined,
                             color: Colors.black, size: 20),
                       ),
                     ),
-                    SizedBox(width: 12),
+                    const SizedBox(width: 12),
                     Expanded(
                       child: TextField(
                         controller: _messageController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: "Write message...",
                           hintStyle: TextStyle(color: Colors.black54),
                           border: InputBorder.none,
@@ -258,18 +262,18 @@ class _ChatScreenState extends State<ChatScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 20),
-                    Container(
+                    const SizedBox(width: 20),
+                    SizedBox(
                       height: 45,
                       width: 45,
                       child: FloatingActionButton(
                         onPressed: _sendMessage,
-                        child: Icon(Icons.send, color: Colors.white, size: 18),
                         backgroundColor: Colors.blueAccent,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
+                        child: Icon(Icons.send, color: Colors.white, size: 18),
                       ),
                     ),
                   ],

@@ -3,9 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_online_kachehari/components/update_profile/edit.dart';
 import 'package:flutter_online_kachehari/components/update_profile/editForm.dart';
 
-
 class Updatepage extends StatefulWidget {
-  Updatepage({super.key});
+  const Updatepage({super.key});
   @override
   State<StatefulWidget> createState() {
     return UpdateState();
@@ -13,14 +12,14 @@ class Updatepage extends StatefulWidget {
 }
 
 class UpdateState extends State<Updatepage> {
-  TextEditingController _nameController = new TextEditingController();
-  TextEditingController _emailController = new TextEditingController();
-  TextEditingController _passwordController = new TextEditingController();
-  TextEditingController _phoneController = new TextEditingController();
-  TextEditingController _genderController = new TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
 
   late String _selectedGender;
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
 
   void _handleGenderChange(String? value) {
     setState(() {
@@ -44,7 +43,10 @@ class UpdateState extends State<Updatepage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Update",style: TextStyle(color: Colors.white),),
+          title: const Text(
+            "Update",
+            style: TextStyle(color: Colors.white),
+          ),
           backgroundColor: Colors.deepPurple,
         ),
         body: SingleChildScrollView(
@@ -53,8 +55,10 @@ class UpdateState extends State<Updatepage> {
             child: Column(
               children: [
                 Container(
-                    child: Text(
-                        'Update Your details')),
+                    child: const Text(
+                  'Update Your details',
+                  style: TextStyle(fontSize: 25, fontFamily: 'serif'),
+                )),
                 const SizedBox(height: 20),
                 editForm("Enter the name", Icons.person, TextInputType.name,
                     _nameController, false, '', '', '', _handleGenderChange),
@@ -103,14 +107,17 @@ class UpdateState extends State<Updatepage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Edit()));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const Edit()));
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.all(10),
-                      backgroundColor: Colors.lightBlueAccent,
+                      backgroundColor: Colors.deepPurple,
                     ),
-                    child: const Text('Update Profile'),
+                    child: const Text(
+                      'Update Profile',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ],
