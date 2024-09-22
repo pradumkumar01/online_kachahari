@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
 
 class DioHelper {
   final Dio _dio;
@@ -9,10 +11,10 @@ class DioHelper {
   DioHelper(this._dio);
 
   Future<Response?> get(
-    String url, {
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? headers,
-  }) async {
+      String url, {
+        Map<String, dynamic>? queryParameters,
+        Map<String, dynamic>? headers,
+      }) async {
     try {
       final response = await _dio.get(
         url,
@@ -26,14 +28,13 @@ class DioHelper {
     } catch (e) {
       throw Exception("Unexpected Error: $e");
     }
-    return null;
   }
 
   Future<Response?> post(
-    String url,
-    dynamic data, {
-    Map<String, dynamic>? headers,
-  }) async {
+      String url,
+      dynamic data,{
+        Map<String, dynamic>? headers,
+      }) async {
     try {
       final response = await _dio.post(
         url,
@@ -47,14 +48,13 @@ class DioHelper {
     } catch (e) {
       throw Exception("Unexpected Error: $e");
     }
-    return null;
   }
 
   Future<Response?> put(
-    String url,
-    dynamic data, {
-    Map<String, dynamic>? headers,
-  }) async {
+      String url,
+      dynamic data, {
+        Map<String, dynamic>? headers,
+      }) async {
     try {
       final response = await _dio.put(
         url,
@@ -68,14 +68,13 @@ class DioHelper {
     } catch (e) {
       throw Exception("Unexpected Error: $e");
     }
-    return null;
   }
 
   Future<Response?> patch(
-    String url,
-    dynamic data, {
-    Map<String, dynamic>? headers,
-  }) async {
+      String url,
+      dynamic data, {
+        Map<String, dynamic>? headers,
+      }) async {
     try {
       final response = await _dio.patch(
         url,
@@ -89,14 +88,13 @@ class DioHelper {
     } catch (e) {
       throw Exception("Unexpected Error: $e");
     }
-    return null;
   }
 
   Future<Response?> delete(
-    String url, {
-    dynamic data,
-    Map<String, dynamic>? headers,
-  }) async {
+      String url, {
+        dynamic data,
+        Map<String, dynamic>? headers,
+      }) async {
     try {
       final response = await _dio.delete(
         url,
@@ -110,15 +108,14 @@ class DioHelper {
     } catch (e) {
       throw Exception("Unexpected Error: $e");
     }
-    return null;
   }
 
   Future<Response?> uploadFile(
-    String url,
-    File file, {
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? queryParameters,
-  }) async {
+      String url,
+      File file, {
+        Map<String, dynamic>? headers,
+        Map<String, dynamic>? queryParameters,
+      }) async {
     try {
       final formData = FormData.fromMap({
         "file": await MultipartFile.fromFile(file.path),
@@ -137,15 +134,14 @@ class DioHelper {
     } catch (e) {
       throw Exception("Unexpected Error: $e");
     }
-    return null;
   }
 
   Future<void> downloadFile(
-    String url,
-    String savePath, {
-    Map<String, dynamic>? queryParameters,
-    Map<String, dynamic>? headers,
-  }) async {
+      String url,
+      String savePath, {
+        Map<String, dynamic>? queryParameters,
+        Map<String, dynamic>? headers,
+      }) async {
     try {
       await _dio.download(
         url,
@@ -175,5 +171,13 @@ class DioHelper {
         message: e.message,
       );
     }
+  }
+
+  Map<String,dynamic>? responseDecoder(dynamic response){
+    Map<String,dynamic> jsonResponse = json.decode(response.toString());
+    if(kDebugMode){
+      print("Json Data : ${jsonResponse.toString()}");
+    }
+    return jsonResponse;
   }
 }

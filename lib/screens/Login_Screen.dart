@@ -1,5 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
+import 'dart:async';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_online_kachehari/api/constants/Urls.dart';
+import 'package:flutter_online_kachehari/api/interface/DioHelper.dart';
+import 'package:flutter_online_kachehari/components/toaster/toast.dart';
 import 'package:flutter_online_kachehari/screens/ForgotScreen.dart';
 import 'package:flutter_online_kachehari/screens/HomePage.dart';
 import 'package:flutter_online_kachehari/screens/SignUpScreen.dart';
@@ -13,6 +19,7 @@ class Login_Screen extends StatefulWidget {
 }
 
 class _Login_ScreenState extends State<Login_Screen> {
+
   final _TextFeildController_for_username = TextEditingController();
   final _TextFeildController_for_password = TextEditingController();
   late String _result_Login;
@@ -121,7 +128,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                         child: Card(
                           elevation: 4,
                           shadowColor: Colors.grey,
-                          child: SizedBox(
+                          child: Container(
                             width: 270,
                             child: TextField(
                               controller: _TextFeildController_for_username,
@@ -163,7 +170,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                         child: Card(
                           shadowColor: Colors.grey,
                           elevation: 4,
-                          child: SizedBox(
+                          child: Container(
                             width: 270,
                             child: TextField(
                               obscureText: _showPassword ? false : true,
@@ -176,8 +183,8 @@ class _Login_ScreenState extends State<Login_Screen> {
                                     });
                                   },
                                   child: _showPassword
-                                      ? const Icon(Icons.visibility)
-                                      : const Icon(Icons.visibility_off),
+                                      ? Icon(Icons.visibility)
+                                      : Icon(Icons.visibility_off),
                                 ),
                                 prefixIcon: const Icon(Icons.person),
                                 filled: true,
@@ -270,7 +277,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                   onTap: () {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(builder: (context) {
-                                      return const SignupScreen();
+                                      return SignupScreen();
                                     }));
                                   },
                                   child: const Center(
@@ -298,24 +305,69 @@ class _Login_ScreenState extends State<Login_Screen> {
     );
   }
 
-  void login_result() {
+  void login_result() async{
+
     String username = _TextFeildController_for_username.text;
     String password = _TextFeildController_for_password.text;
 
     //validation for username
-    if (username.trim() == "") {
-      showAlert(context, "Username is Required");
+    if(username.trim() == ""){
+      showAlert(context,"Username is Required");
       return;
     }
 
     //validation for password
-    if (password.trim() == "") {
-      showAlert(context, "Password is Required");
+    if(password.trim() == ""){
+      showAlert(context,"Password is Required");
       return;
     }
 
-    if (username.trim() != "" && password.trim() != "") {
-      return;
-    }
+    if(username.trim()!="" && password.trim()!=""){
+      final _dio = new Dio();
+      DioHelper dioHelper = new DioHelper(_dio);
+
+      var userdata = {
+        "username": username,
+        "password": password,
+      };
+
+      try {
+        final formData = FormData.fromMap(userdata);
+
+        // Add await here
+        final loginResponse = await dioHelper.post(Urls().getApiUrl("user_login"), formData);
+
+        print("Response ==> ${loginResponse.toString()}");
+
+        // Await ensures loginResponse is complete before decoding
+        dynamic response = dioHelper.responseDecoder(loginResponse);  // Extract the data part
+
+        int code = response["code"];
+        bool status = response["status"];
+        String message = response["message"];
+
+        if (status == true) {
+          showToaster(message);
+          Timer(Duration(seconds: 3), () {
+            Navigator.of(context).push(
+              new MaterialPageRoute(builder: (context) {
+                return HomePage();
+              }),
+            );
+          });
+        } else {
+          showAlert(context, "${message} Or User Does not Exist");
+        }
+
+      } on DioException catch (e) {
+        print("DioException Exception: ${e.response.toString()}");
+        showToaster("DioException Occurred: ${e.response.toString()}");
+      } catch (err) {
+        print("Uncaught Exception: ${err.toString()}");
+        showToaster("Exception Occurred: ${err.toString()}");
+      }
+     }
+
+
   }
 }
