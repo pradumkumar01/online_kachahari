@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_online_kachehari/components/update_profile/edit.dart';
 import 'package:flutter_online_kachehari/components/update_profile/editForm.dart';
 
-
 class Updatepage extends StatefulWidget {
   Updatepage({super.key});
   @override
@@ -44,7 +43,16 @@ class UpdateState extends State<Updatepage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Update",style: TextStyle(color: Colors.white),),
+          leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              )),
+          title: Text(
+            "Update",
+            style: TextStyle(color: Colors.white),
+          ),
           backgroundColor: Colors.deepPurple,
         ),
         body: SingleChildScrollView(
@@ -52,9 +60,7 @@ class UpdateState extends State<Updatepage> {
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                Container(
-                    child: Text(
-                        'Update Your details')),
+                Container(child: Text('Update Your details')),
                 const SizedBox(height: 20),
                 editForm("Enter the name", Icons.person, TextInputType.name,
                     _nameController, false, '', '', '', _handleGenderChange),

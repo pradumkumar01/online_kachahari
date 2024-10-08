@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_online_kachehari/components/update_profile/edit.dart';
+import 'package:flutter_online_kachehari/screens/AboutUsScreen.dart';
 import 'package:flutter_online_kachehari/screens/CustomerSupport.dart';
 import 'package:flutter_online_kachehari/screens/Feeds.dart';
 import 'package:flutter_online_kachehari/screens/LiveWakeels.dart';
@@ -267,17 +268,8 @@ class _HomePageState extends State<HomePage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => TrendingBlogs()));
                   } else if (item['title'] == 'About Us') {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return Scaffold(
-                        appBar: AppBar(
-                          title: Text('About Us'),
-                        ),
-                        body: Center(
-                          child: Text('About Us Page'),
-                        ),
-                      );
-                    }));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => AboutUsScreen()));
                   } else if (item['title'] == 'Contact Us') {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
@@ -424,6 +416,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Container(),
+
+// top advocates
               SizedBox(height: 20),
               Row(
                 children: [
@@ -503,10 +497,10 @@ class _HomePageState extends State<HomePage> {
                   elevation: 4,
                   child: Container(
                     height: 250,
-                    width: 250,
+                    width: 450,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/vakil_logo.png'),
+                        image: AssetImage('assets/images/vakil.jpg'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -734,6 +728,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+
+      //add bottom navigation with color deeppurple iocns home feed search notifiaction profile
     );
   }
 }

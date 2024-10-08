@@ -318,7 +318,6 @@ class _Login_ScreenState extends State<Login_Screen> {
 
     if(username.trim()!="" && password.trim()!=""){
 
-
       return;
      }
 

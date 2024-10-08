@@ -75,7 +75,8 @@ class _FeedsPageState extends State<FeedsPage> {
 
   // Function to handle back button (customize according to your need)
   void _handleBackPress() {
-    Navigator.pop(context); // You can modify this if you want to go back to a specific page.
+    Navigator.pop(
+        context); // You can modify this if you want to go back to a specific page.
   }
 
   @override
@@ -88,10 +89,17 @@ class _FeedsPageState extends State<FeedsPage> {
         length: 5,
         child: Scaffold(
           appBar: AppBar(
-            title: Text("Feeds"),
+            backgroundColor: Colors.deepPurple,
+            title: Text(
+              "Feeds",
+              style: TextStyle(color: Colors.white),
+            ),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back), // Back arrow icon
-              onPressed: _handleBackPress,  // Define back action
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ), // Back arrow icon
+              onPressed: _handleBackPress, // Define back action
             ),
           ),
           body: Column(
@@ -111,7 +119,8 @@ class _FeedsPageState extends State<FeedsPage> {
                         children: [
                           CircleAvatar(
                             radius: 25,
-                            backgroundImage: AssetImage("assets/images/f_img.jpeg"),
+                            backgroundImage:
+                                AssetImage("assets/images/f_img.jpeg"),
                           ),
                           SizedBox(width: 10),
                           Expanded(
@@ -188,8 +197,9 @@ class _FeedsPageState extends State<FeedsPage> {
                                   image: DecorationImage(
                                     image: item["image"] != null
                                         ? FileImage(File(item["image"] ?? ''))
-                                        : AssetImage('assets/images/default.jpg')
-                                    as ImageProvider,
+                                        : AssetImage(
+                                                'assets/images/default.jpg')
+                                            as ImageProvider,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -203,21 +213,24 @@ class _FeedsPageState extends State<FeedsPage> {
                                   children: <Widget>[
                                     Icon(Icons.thumb_up, color: Colors.grey),
                                     SizedBox(width: 8),
-                                    Text("Like", style: TextStyle(color: Colors.grey)),
+                                    Text("Like",
+                                        style: TextStyle(color: Colors.grey)),
                                   ],
                                 ),
                                 Row(
                                   children: <Widget>[
                                     Icon(Icons.comment, color: Colors.grey),
                                     SizedBox(width: 8),
-                                    Text("Comments", style: TextStyle(color: Colors.grey)),
+                                    Text("Comments",
+                                        style: TextStyle(color: Colors.grey)),
                                   ],
                                 ),
                                 Row(
                                   children: <Widget>[
                                     Icon(Icons.share, color: Colors.grey),
                                     SizedBox(width: 8),
-                                    Text("Share", style: TextStyle(color: Colors.grey)),
+                                    Text("Share",
+                                        style: TextStyle(color: Colors.grey)),
                                   ],
                                 ),
                               ],

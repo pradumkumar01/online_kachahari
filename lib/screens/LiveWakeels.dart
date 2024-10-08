@@ -50,6 +50,12 @@ class _LivewakeelsState extends State<Livewakeels> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            )),
         title: const Text(
           "Live Advocates",
           style: TextStyle(
@@ -74,7 +80,7 @@ class _LivewakeelsState extends State<Livewakeels> {
             child: ListTile(
               contentPadding: EdgeInsets.all(16.0),
               leading: CircleAvatar(
-                backgroundColor: Colors.blueAccent,
+                backgroundColor: Colors.deepPurpleAccent,
                 child: Icon(item['icon'], color: Colors.white),
               ),
               title: Text(

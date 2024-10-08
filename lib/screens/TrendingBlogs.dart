@@ -12,82 +12,82 @@ class _TrendingBlogsState extends State<TrendingBlogs> {
       'title': 'How to build a startup',
       'author': 'John Doe',
       'description':
-      'A comprehensive guide to building a successful startup from scratch.',
+          'A comprehensive guide to building a successful startup from scratch.',
       'imageUrl':
-      'https://images.pexels.com/photos/3153204/pexels-photo-3153204.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/3153204/pexels-photo-3153204.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     {
       'title': 'AI in the Modern World',
       'author': 'Jane Smith',
       'description':
-      'Exploring the impact of Artificial Intelligence in today’s society.',
+          'Exploring the impact of Artificial Intelligence in today’s society.',
       'imageUrl':
-      'https://images.pexels.com/photos/3178818/pexels-photo-3178818.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/3178818/pexels-photo-3178818.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     {
       'title': 'Healthy Living: A New Approach',
       'author': 'Alice Johnson',
       'description':
-      'Tips and tricks on how to maintain a healthy lifestyle in a busy world.',
+          'Tips and tricks on how to maintain a healthy lifestyle in a busy world.',
       'imageUrl':
-      'https://images.pexels.com/photos/4240505/pexels-photo-4240505.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/4240505/pexels-photo-4240505.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     {
       'title': 'The Future of Work',
       'author': 'Michael Brown',
       'description':
-      'Analyzing how automation and remote work will shape the future job market.',
+          'Analyzing how automation and remote work will shape the future job market.',
       'imageUrl':
-      'https://images.pexels.com/photos/4240606/pexels-photo-4240606.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/4240606/pexels-photo-4240606.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     {
       'title': 'Travel on a Budget',
       'author': 'Sarah Wilson',
       'description':
-      'The ultimate guide to affordable travel experiences across the globe.',
+          'The ultimate guide to affordable travel experiences across the globe.',
       'imageUrl':
-      'https://images.pexels.com/photos/4240503/pexels-photo-4240503.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/4240503/pexels-photo-4240503.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     // 5 More blogs added
     {
       'title': 'Mastering Photography',
       'author': 'Robert Green',
       'description':
-      'Learn how to capture stunning photos using your smartphone or DSLR.',
+          'Learn how to capture stunning photos using your smartphone or DSLR.',
       'imageUrl':
-      'https://images.pexels.com/photos/3194523/pexels-photo-3194523.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/3194523/pexels-photo-3194523.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     {
       'title': 'Investing in the Stock Market',
       'author': 'Laura White',
       'description':
-      'Beginner’s guide to understanding the stock market and making smart investments.',
+          'Beginner’s guide to understanding the stock market and making smart investments.',
       'imageUrl':
-      'https://images.pexels.com/photos/3768894/pexels-photo-3768894.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/3768894/pexels-photo-3768894.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     {
       'title': 'Minimalism in Modern Life',
       'author': 'David Clark',
       'description':
-      'How to embrace a minimalist lifestyle and declutter your life and mind.',
+          'How to embrace a minimalist lifestyle and declutter your life and mind.',
       'imageUrl':
-      'https://images.pexels.com/photos/4458554/pexels-photo-4458554.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/4458554/pexels-photo-4458554.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     {
       'title': 'The Rise of Electric Cars',
       'author': 'Emma Thompson',
       'description':
-      'Exploring the growth of electric vehicles and their impact on the environment.',
+          'Exploring the growth of electric vehicles and their impact on the environment.',
       'imageUrl':
-      'https://images.pexels.com/photos/4050351/pexels-photo-4050351.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/4050351/pexels-photo-4050351.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
     {
       'title': 'Learning to Code: Where to Start',
       'author': 'James Baker',
       'description':
-      'A step-by-step guide for beginners looking to learn programming languages.',
+          'A step-by-step guide for beginners looking to learn programming languages.',
       'imageUrl':
-      'https://images.pexels.com/photos/7669729/pexels-photo-7669729.jpeg?auto=compress&cs=tinysrgb&w=600'
+          'https://images.pexels.com/photos/7669729/pexels-photo-7669729.jpeg?auto=compress&cs=tinysrgb&w=600'
     },
   ];
 
@@ -95,23 +95,26 @@ class _TrendingBlogsState extends State<TrendingBlogs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           "Trending Blogs",
           style: TextStyle(
             fontFamily: "serif",
             fontSize: 21,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
         flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.blue.withOpacity(0.9),
-                Colors.lightBlue.withOpacity(0.3),
-              ],
-            ),
-          ),
+          color: Colors.deepPurpleAccent,
         ),
       ),
       body: ListView.separated(

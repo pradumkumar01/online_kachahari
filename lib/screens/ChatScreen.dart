@@ -102,7 +102,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.deepPurple,
         flexibleSpace: SafeArea(
           child: Container(
             padding: EdgeInsets.only(right: 16),
@@ -112,12 +112,12 @@ class _ChatScreenState extends State<ChatScreen> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: Icon(Icons.arrow_back, color: Colors.white),
                 ),
                 SizedBox(width: 2),
                 CircleAvatar(
                   maxRadius: 20,
-                  backgroundColor: Colors.blueAccent,
+                  backgroundColor: Colors.deepPurpleAccent[200],
                   child: Icon(Icons.person, color: Colors.white),
                 ),
                 SizedBox(width: 12),
@@ -130,7 +130,9 @@ class _ChatScreenState extends State<ChatScreen> {
                         _items[2][
                             'realName'], // Assuming you are chatting with Michael Brown
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
                       ),
                       SizedBox(height: 2),
                       Row(
@@ -176,8 +178,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                     decoration: BoxDecoration(
-                      color:
-                          isSender ? Colors.blueAccent : Colors.grey.shade200,
+                      color: isSender
+                          ? Colors.deepPurpleAccent
+                          : Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Row(
@@ -185,7 +188,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       children: [
                         if (!isSender)
                           CircleAvatar(
-                            backgroundColor: Colors.blueAccent,
+                            backgroundColor: Colors.deepPurpleAccent,
                             maxRadius: 15,
                             child: Icon(Icons.person, color: Colors.white),
                           ),
@@ -265,7 +268,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       child: FloatingActionButton(
                         onPressed: _sendMessage,
                         child: Icon(Icons.send, color: Colors.white, size: 18),
-                        backgroundColor: Colors.blueAccent,
+                        backgroundColor: Colors.deepPurpleAccent,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),

@@ -13,43 +13,53 @@ class _TermsConditionsState extends State<TermsConditions>
   final List<Map<String, String>> terms = [
     {
       'title': 'Introduction',
-      'content': 'Online Kachehari provides an online platform for users to connect with legal experts for advice, consultations, and services. The use of this platform is governed by the terms and conditions outlined here.'
+      'content':
+          'Online Kachehari provides an online platform for users to connect with legal experts for advice, consultations, and services. The use of this platform is governed by the terms and conditions outlined here.'
     },
     {
       'title': 'Acceptance of Terms',
-      'content': 'By accessing or using the Online Kachehari platform, users agree to comply with and be bound by these Terms and Conditions. If you do not agree with these terms, you are advised not to use the platform.'
+      'content':
+          'By accessing or using the Online Kachehari platform, users agree to comply with and be bound by these Terms and Conditions. If you do not agree with these terms, you are advised not to use the platform.'
     },
     {
       'title': 'User Responsibilities',
-      'content': 'Users are required to provide accurate information during registration and are responsible for maintaining the confidentiality of their login credentials. Any misuse or unauthorized access should be reported immediately.'
+      'content':
+          'Users are required to provide accurate information during registration and are responsible for maintaining the confidentiality of their login credentials. Any misuse or unauthorized access should be reported immediately.'
     },
     {
       'title': 'Consultation Services',
-      'content': 'The platform allows users to consult legal professionals. The advice provided by legal experts is based on the information given by users. Online Kachehari is not liable for any decisions made by users based on such advice.'
+      'content':
+          'The platform allows users to consult legal professionals. The advice provided by legal experts is based on the information given by users. Online Kachehari is not liable for any decisions made by users based on such advice.'
     },
     {
       'title': 'Payment and Refund Policy',
-      'content': 'All payments for consultations and services must be made in advance. Refunds will only be issued if a legal expert fails to provide the agreed-upon service, subject to the discretion of Online Kachehari.'
+      'content':
+          'All payments for consultations and services must be made in advance. Refunds will only be issued if a legal expert fails to provide the agreed-upon service, subject to the discretion of Online Kachehari.'
     },
     {
       'title': 'Privacy Policy',
-      'content': 'Online Kachehari is committed to protecting the privacy of its users. Personal data will not be shared with third parties without consent, except where required by law.'
+      'content':
+          'Online Kachehari is committed to protecting the privacy of its users. Personal data will not be shared with third parties without consent, except where required by law.'
     },
     {
       'title': 'Termination of Use',
-      'content': 'Online Kachehari reserves the right to terminate or suspend user accounts if there is a breach of these Terms and Conditions or any misuse of the platform.'
+      'content':
+          'Online Kachehari reserves the right to terminate or suspend user accounts if there is a breach of these Terms and Conditions or any misuse of the platform.'
     },
     {
       'title': 'Limitation of Liability',
-      'content': 'Online Kachehari and its legal experts are not liable for any indirect or consequential damages arising from the use of the platform or the advice given by legal professionals.'
+      'content':
+          'Online Kachehari and its legal experts are not liable for any indirect or consequential damages arising from the use of the platform or the advice given by legal professionals.'
     },
     {
       'title': 'Amendments to Terms',
-      'content': 'Online Kachehari reserves the right to modify or update these Terms and Conditions at any time. Users are responsible for reviewing these terms periodically to stay informed of any changes.'
+      'content':
+          'Online Kachehari reserves the right to modify or update these Terms and Conditions at any time. Users are responsible for reviewing these terms periodically to stay informed of any changes.'
     },
     {
       'title': 'Governing Law',
-      'content': 'These Terms and Conditions shall be governed by and construed in accordance with the laws of the jurisdiction in which Online Kachehari operates.'
+      'content':
+          'These Terms and Conditions shall be governed by and construed in accordance with the laws of the jurisdiction in which Online Kachehari operates.'
     },
   ];
 
@@ -93,22 +103,21 @@ class _TermsConditionsState extends State<TermsConditions>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(Icons.arrow_back, color: Colors.white)),
         title: const Text(
           "Terms & Conditions",
           style: TextStyle(
             fontFamily: "serif",
+            color: Colors.white,
             fontSize: 21,
             fontWeight: FontWeight.bold,
           ),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.blue.withOpacity(0.9),
-                Colors.lightBlue.withOpacity(0.3),
-              ],
-            ),
+            color: Colors.deepPurple,
           ),
         ),
       ),
@@ -131,25 +140,26 @@ class _TermsConditionsState extends State<TermsConditions>
                     ),
                     margin: const EdgeInsets.symmetric(vertical: 8),
                     child: ExpansionTile(
-                      leading: const Icon(Icons.article, color: Colors.blueAccent),
+                      leading: const Icon(Icons.article,
+                          color: Colors.deepPurpleAccent),
                       title: Text(
                         term['title']!,
                         style: const TextStyle(
                           fontFamily: "serif",
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blueAccent,
+                          color: Colors.deepPurpleAccent,
                         ),
                       ),
                       children: [
                         Container(
-
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            border: Border.symmetric(vertical: BorderSide.none,horizontal: BorderSide.none),
+                            border: Border.symmetric(
+                                vertical: BorderSide.none,
+                                horizontal: BorderSide.none),
                             borderRadius: BorderRadius.circular(15),
                             gradient: LinearGradient(
-
                               colors: [Colors.white, Colors.blue[50]!],
                             ),
                           ),
